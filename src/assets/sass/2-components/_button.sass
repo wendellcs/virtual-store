@@ -1,0 +1,32 @@
+@use '../1-base/_variables'
+
+.btn 
+    outline: none
+    font-size: 1.4rem
+    font-weight: 600
+    color: variables.$text-color
+    padding: 8px 20px
+    border-radius: 8px
+    cursor: pointer
+    transition: .3s
+
+    display: flex
+    gap: 8px
+    
+    &.purple
+        background-color: variables.$primary-color
+        color: variables.$light-color
+
+        &:hover 
+            background-color: variables.$primary-dark-color
+
+    &:hover 
+        background-color: variables.$primary-color
+        color: variables.$light-color
+
+        .icon.button 
+            color: variables.$light-color
+
+
+
+    
