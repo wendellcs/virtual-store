@@ -1,20 +1,15 @@
 import { FiShoppingBag } from "react-icons/fi";
-import { IoPersonOutline } from "react-icons/io5";
-
-import { Link } from "react-router-dom";
+import { BsLayoutSidebar } from "react-icons/bs";
 
 export default function Header(){
     return (
         <header>
-            <FiShoppingBag className='icon' />
+            <div className="header-icons">
+                <BsLayoutSidebar className='icon normal' />
+                <FiShoppingBag className='icon big' />
+            </div>
 
-            <div className="login-container">
-                <Link className="btn" to="/login">
-                    <span><IoPersonOutline className="icon button"/></span>
-                    Entrar
-                </Link>
-                <Link className="btn purple" to="/register">Cadastrar</Link>
-            </div>  
+            <h1 className="main-title">Nome da loja</h1>
         </header>
     )
 }

@@ -1,0 +1,39 @@
+@use '../1-base/_variables'
+
+.home-container
+    display: flex 
+
+    .content-container
+        width: 100% 
+
+        .content 
+            padding: 20px 80px
+
+            .search-container 
+                margin: 20px auto 30px auto
+                position: relative
+                width: 100%
+                max-width: 500px
+
+                .search-icon 
+                    position: absolute
+                    top: 38px
+                    left: 10px
+
+                input   
+                    margin: 30px 0 
+                    width: 100%
+                    max-width: 500px
+                    height: 40px
+                    border-radius: 8px
+                    padding-left: 40px
+
+            .container-products
+
+                .title 
+                    font-size: 2.2rem
+                    font-weight: 600
+                    margin-bottom: 15px
+                    color: variables.$title-color
+                    text-align: left
+            
