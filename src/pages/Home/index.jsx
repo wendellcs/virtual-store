@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Header from "../../components/Header"
 import Sidebar from "../../components/Sidebar"
 import { CiSearch } from "react-icons/ci";
@@ -7,11 +7,13 @@ import axios from 'axios'
 import imageTest from './teste.avif'
 
 export default function Home() {
+    const [productList, setProductList] = useState([])
 
     useEffect(() => {
         async function testApi() {
-            const data = await axios.get('http://127.0.0.1:8000/')
-            console.log(data, ' aqui')
+            const data = await axios.get('http://127.0.0.1:8000/products')
+            console.log(data.data)
+            setProductList(data.data)
         }
 
         testApi()
@@ -33,21 +35,26 @@ export default function Home() {
                         <h2 className="title">Nossos produtos</h2>
 
                         <div className="products">
-                            <div className="card">
-                                <div className="card-image">
-                                    <img src={imageTest} alt="Product-name image" />
-                                    <p className="product-tag">TVs</p>
-                                </div>
+                            {productList.length > 0 && productList.map(p => {
+                                return (
+                                    <div className="card" key={p.id}>
+                                        <div className="card-image">
+                                            <img src={imageTest} alt="Product-name image" />
+                                            <p className="product-tag">{p.tag}</p>
+                                        </div>
 
-                                <h3 className="product-name">Smart TV 32 Philco Led</h3>
-                                <div className="card-bottom">
-                                    <div className="card-bottom-left">
-                                        <p className="product-price">R$ 889</p>
-                                        <p className="product-price-card">18x R$ 94.88</p>
+                                        <h3 className="product-name">{p.name}</h3>
+                                        <div className="card-bottom">
+                                            <div className="card-bottom-left">
+                                                <p className="product-price">R$ {p.price}</p>
+                                                <p className="product-price-card">{p.price_card}</p>
+                                            </div>
+                                            <button className="btn buy"><FiShoppingCart className="icon big cart"/></button>
+                                        </div>
                                     </div>
-                                    <button className="btn buy"><FiShoppingCart className="icon big cart"/></button>
-                                </div>
-                            </div>
+                                )
+                            })}
+                           
                         </div>
                     </div>
                 </main>
