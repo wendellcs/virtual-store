@@ -1,9 +1,12 @@
 import { useState } from "react"
 import axios from "axios"
+import { useNavigate } from "react-router-dom"
 
 export default function Admin(){
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+
+    const navigate = useNavigate()
 
     async function handleFormSubmit(e){
         e.preventDefault()
@@ -13,15 +16,16 @@ export default function Admin(){
             return
         }
 
-        axios.post('http://127.0.0.1:8000/admin/login', {
+        axios.post('http://localhost:8000/admin/login', {
             email,
             password
-        })
+        },{ withCredentials: true })
         .then(res => {
             console.log(res, 'login status')
+            navigate('/admin/dashboard')
         })
         .catch(e => {
-            console.error(err.response?.data);
+            console.error(e.response?.data);
         })
 
     }
