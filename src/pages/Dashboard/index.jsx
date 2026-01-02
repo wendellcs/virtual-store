@@ -1,30 +1,110 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { CiSearch } from "react-icons/ci";
+import { FaArrowUp } from "react-icons/fa";
 
 export default function Dashboard(){
+    const [products, setProducts] = useState([])
+    const [allowed, setAllowed] = useState(false)
+     
+    const [name, setName] = useState('')
+    const [description, setDescription] = useState('')
     const [tag, setTag] = useState('')
+    const [price, setPrice] = useState('')
+    const [parts, setParts] = useState(1)
+    const [partsPrice, setPartsPrice] = useState(0)
+    const [productLink, setProductLink] = useState('')
     const [image, setImage] = useState(null)
+
 
     const navigate = useNavigate()
     useEffect(() => {
         async function validateAccess() {
             await axios.get('http://localhost:8000/admin/access', {withCredentials: true})
+            .then(() => {
+                setAllowed(true)
+                getProducts()
+            })
             .catch(err => {
                 if (err.response?.status === 401){
                     navigate('/')
                 }
             })
         }
-
         validateAccess()
     }, [])
 
-    function handleFormSubmit(e){
-        e.preventDefault
+    async function getProducts() {
+        await axios.get('http://localhost:8000/products')
+        .then((data) => {
+            console.log(data.data)
+            setProducts(data.data)
+        })
+        .catch(err => {
+            console.error('Algo deu errado ao buscar os produtos:', err)
+        })
     }
+
+    async function handleFormSubmit(e){
+        e.preventDefault()
+
+        if (!name || !description || !tag || !price || !parts || !partsPrice || !productLink || !image){
+            alert('Por favor, preencha todos os campos.')
+            return
+        }
+
+        const formData = new FormData()
+        formData.append('name', name)
+        formData.append('description', description)
+        formData.append('tag', tag)
+        formData.append('price', Number(price))
+        formData.append('parts', Number(parts))
+        formData.append('partsPrice', Number(partsPrice))
+        formData.append('productLink', productLink)
+        formData.append('image', image)
+
+        await axios.post('http://localhost:8000/products', formData, {withCredentials: true})
+        .then(() => {
+            alert('Produto cadastrado com sucesso!')
+            getProducts()
+        })
+        .catch(err => {
+            console.error('Erro ao cadastrar produto:', err)
+        })
+    }
+
+    async function handleDeleteProduct(id) {
+        await axios.delete(`http://localhost:8000/admin/products/${id}`, {withCredentials: true})
+        .then(() => {
+            getProducts()
+        })
+        .catch(err => {
+            console.error('Erro ao deletar produto:', err)
+        })
+    }
+
+    async function handleLogout() {
+        await axios.post('http://localhost:8000/admin/logout',{}, {withCredentials: true})
+        .then(() => {
+            setAllowed(false)
+            navigate('/')
+        })
+        .catch(err => {
+            console.error('Erro ao sair:', err)
+        })
+    }
+
+    function handleBackToTop(){
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        })
+    }
+
     return (
         <div className="dashboard-container">
+            <button className="btn logout" onClick={() => handleLogout()}>Sair</button>
             <h1>Dashboard</h1>
 
             <h2>
@@ -36,12 +116,12 @@ export default function Dashboard(){
 
                 <div className="box">
                     <label htmlFor="product-name">Nome</label>
-                    <input type="text" id="product-name"/>
+                    <input type="text" id="product-name" value={name} onChange={e => setName(e.target.value)}/>
                 </div>
 
                 <div className="box">
                     <label htmlFor="product-description">Descrição ( caracteristicas )</label>
-                    <input type="text" id="product-description"/>
+                    <input type="text" id="product-description" value={description} onChange={e => setDescription(e.target.value)}/>
                 </div>
 
                 <div className="box">
@@ -131,17 +211,24 @@ export default function Dashboard(){
 
                 <div className="box">
                     <label htmlFor="product-price">Preço</label>
-                    <input type="number" id="product-price" min={0}/>
+                    <input type="number" id="product-price" min={0} step={0.01} value={price} onChange={e => setPrice(e.target.value)}/>
                 </div>
 
                 <div className="box">
                     <div>
                         <label htmlFor="product-price-part">Quantidade máxima de parcelas</label>
-                        <input type="number" id="product-price-part" min={1}/>
+                        <input type="number" id="product-price-part" min={1} step={1} value={parts} onChange={e => setParts(e.target.value)}/>
                     </div>
                     <div>
                         <label htmlFor="product-price-card">Valor das parcelas</label>
-                        <input type="number" id="product-price-card" min={0}/>
+                        <input type="number" id="product-price-card" min={0} step={0.01} value={partsPrice} onChange={e => setPartsPrice(e.target.value)}/>
+                    </div>
+                </div>
+
+                <div className="box">
+                    <div>
+                        <label htmlFor="product-link">Link do produto</label>
+                        <input type="text" id="product-link" value={productLink} onChange={e => setProductLink(e.target.value)}/>
                     </div>
                 </div>
 
@@ -151,11 +238,44 @@ export default function Dashboard(){
                         <img src={URL.createObjectURL(image)} alt="Imagem do produto" />
                     )}
                     <input id="img" type="file" accept="image/" onChange={e => setImage(e.target.files[0])}/>
-
                 </div>
 
-                <button className="btn product">Enviar produto</button>
+                <button className="btn product-submit">Enviar produto</button>
             </form>
+
+            <div className="products-container">
+                <h2>Produtos já cadastrados</h2>
+
+                <div className="box">
+                    <CiSearch className="icon big search-icon"/>
+                    <input type="text" placeholder="TVs..."/>
+                </div>
+
+                <div className="products">
+                    {products.length > 0 && products.map(p => {
+                        return (
+                            <div className="card" key={p._id}>
+                                <div className="card-image">
+                                    <img src={p.imageUrl} alt="Product-name image" />
+                                    <p className="product-tag">{p.tag}</p>
+                                </div>
+
+                                <h3 className="product-name">{p.name}</h3>
+                                <div className="card-bottom">
+                                    <div className="card-bottom-left">
+                                        <p className="product-price">R$ {p.price}</p>
+                                        <p className="product-price-card">{p.price_card}</p>
+                                    </div>
+
+                                    <button className="btn delete" onClick={() => handleDeleteProduct(p.id)}>Excluir</button>
+                                </div>
+                            </div>
+                        )
+                    })}
+                </div>
+            </div>
+
+            <button className="btn top" onClick={() => handleBackToTop()}><FaArrowUp className="icon big"/></button>
         </div>
     )
 }

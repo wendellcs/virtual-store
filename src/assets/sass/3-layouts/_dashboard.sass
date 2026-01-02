@@ -1,5 +1,6 @@
 @use '../1-base/variables'
 .dashboard-container
+    position: relative
     h1 
         text-align: center
         font-size: 2.8rem
@@ -17,6 +18,9 @@
         
         h3 
             text-align: center
+            font-size: 1.4rem 
+            font-weight: 400
+            margin-bottom: 20px
 
         .box 
             label 
@@ -31,22 +35,183 @@
                 margin-bottom: 20px
                 border: 1px solid variables.$primary-color
                 border-radius: 8px
-                font-size: 1.4rem
+                font-size: 1.6rem
+                padding-left: 5px
 
             input[type="file"] 
                 width: 91px
+                padding: 0
                 display: block
-                margin: 0 auto 20px auto
+                margin: 20px auto 
                 height: auto
                 border: none
                 color: white
                 border-radius: 0
+                font-size: 1.4rem
 
             img 
                 width: 300px
                 height: auto
                 display: block
                 margin: 0 auto 20px auto
-                
 
-     
+        .btn.product-submit
+            display: block
+            width: 100%
+            height: 45px
+            border-radius: 8px
+            background-color: variables.$primary-color
+            color: white
+            font-size: 1.6rem
+            font-weight: bold
+            letter-spacing: 1px
+            margin-top: 40px
+
+            &:hover 
+                background-color: variables.$primary-dark-color
+                
+    .products-container
+        width: 100%
+        max-width: 1200px
+        text-align: center
+        margin: 40px auto
+        padding: 40px 0
+        border-top: 1px solid variables.$border-color
+
+        h2 
+            margin-bottom: 40px
+            font-size: 2.4rem
+            color: variables.$primary-color
+
+        .box 
+            width: 100%
+            max-width: 400px
+            margin: 0 auto 30px auto
+            text-align: left
+            position: relative
+
+            label 
+                display: block
+                margin-bottom: 10px
+                font-size: 1.6rem
+                font-weight: bold
+
+            .search-icon 
+                position: absolute
+                top: 8px
+                left: 8px
+                color: variables.$primary-color
+
+            input 
+                width: 100%
+                height: 40px
+                margin-bottom: 10px
+                border: 1px solid variables.$primary-color
+                border-radius: 8px
+                font-size: 1.6rem
+                padding-left: 40px 
+
+                &:focus 
+                    outline: none
+                    box-shadow: 0 0 5px variables.$primary-color
+
+        .products
+            display: flex
+            flex-wrap: wrap
+            gap: 20px
+
+            .card 
+                border: 1px solid variables.$border-color
+                border-radius: 8px
+                width: 320px
+                height: 420px
+                padding: 15px
+                
+                .card-image 
+                    width: 100%
+                    max-width: 300px
+                    height: 300px
+                    position: relative
+
+                    img 
+                        width: 100%
+                        height: 100%
+                        object-fit: contain
+
+                    .product-tag 
+                        position: absolute
+                        top: 10px
+                        background-color: variables.$primary-color
+                        padding: 5px
+                        color: white
+                        font-weight: 600
+                        font-size: 1.4rem
+                        border-radius: 5px
+
+                .product-name 
+                    font-size: 2.2rem
+                    margin: 5px 0 10px 0
+                    color: variables.$title-color
+                    text-align: left
+
+                .card-bottom 
+                    display: flex
+                    justify-content: space-between
+                    
+                    &-left
+                        text-align: left
+
+                        .product-price 
+                            font-size: 2rem
+                            font-weight: 600
+                            color: variables.$primary-color
+
+                        .product-price-card
+                            font-size: 1.6rem
+                            color: variables.$text-color
+                            margin: 5px 0
+
+                    .btn.delete
+                        display: block
+                        width: 80px
+                        height: 40px
+                        border-radius: 8px
+                        background-color: variables.$danger-color
+                        color: white
+                        font-size: 1.6rem
+                        font-weight: bold
+                        letter-spacing: 1px
+    
+    .btn.logout , .btn.top
+        display: block
+        position: absolute
+        background-color: variables.$primary-color
+        color: white
+        font-size: 1.6rem
+        font-weight: bold
+        letter-spacing: 1px
+        text-align: center
+        height: 40px
+        
+        &:hover 
+            background-color: variables.$primary-dark-color
+
+    .btn.logout 
+        right: 30px
+        width: 100px
+        top: 0px
+
+        border-radius: 8px
+
+    .btn.top
+        position: absolute 
+        width: 60px
+        border-radius: 8px
+        right: 30px
+        bottom: 0
+        
+        .icon 
+            color: white
+      
+
+                
