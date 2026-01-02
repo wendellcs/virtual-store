@@ -10,13 +10,13 @@ export default function Home() {
     const [productList, setProductList] = useState([])
 
     useEffect(() => {
-        async function testApi() {
+        async function getProducts() {
             const data = await axios.get('http://127.0.0.1:8000/products')
-            console.log(data.data)
+
             setProductList(data.data)
         }
 
-        testApi()
+        getProducts()
     }, [])
     return (
         <div className="home-container">
@@ -37,9 +37,9 @@ export default function Home() {
                         <div className="products">
                             {productList.length > 0 && productList.map(p => {
                                 return (
-                                    <div className="card" key={p.id}>
+                                    <div className="card" key={p._id}>
                                         <div className="card-image">
-                                            <img src={imageTest} alt="Product-name image" />
+                                            <img src={p.imageUrl} alt="Product-name image" />
                                             <p className="product-tag">{p.tag}</p>
                                         </div>
 
@@ -47,7 +47,7 @@ export default function Home() {
                                         <div className="card-bottom">
                                             <div className="card-bottom-left">
                                                 <p className="product-price">R$ {p.price}</p>
-                                                <p className="product-price-card">{p.price_card}</p>
+                                                <p className="product-price-card">Até {p.parts}x de R${p.partsPrice}</p>
                                             </div>
                                             <button className="btn buy"><FiShoppingCart className="icon big cart"/></button>
                                         </div>
