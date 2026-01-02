@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import Header from "../../components/Header"
 import Sidebar from "../../components/Sidebar"
 import { CiSearch } from "react-icons/ci";
+import { Link } from "react-router-dom";
 import { FiShoppingCart } from "react-icons/fi";
 import axios from 'axios'
-import imageTest from './teste.avif'
 
 export default function Home() {
     const [sidebar, setSidebar] = useState(false)
@@ -13,9 +13,13 @@ export default function Home() {
 
     useEffect(() => {
         async function getProducts() {
-            const data = await axios.get('http://127.0.0.1:8000/products')
-
-            setProductList(data.data)
+            await axios.get('http://127.0.0.1:8000/products')
+            .then((data) => {
+                setProductList(data.data)
+            })
+            .catch(err => {
+                console.error('Erro ao buscar produtos:', err)
+            })
         }
 
         getProducts()
@@ -51,7 +55,7 @@ export default function Home() {
                                                 <p className="product-price">R$ {p.price}</p>
                                                 <p className="product-price-card">Até {p.parts}x de R${p.partsPrice}</p>
                                             </div>
-                                            <button className="btn buy"><FiShoppingCart className="icon big cart"/></button>
+                                            <Link className="btn buy" target="_blank" to={p.productLink}><FiShoppingCart className="icon big cart"/></Link>
                                         </div>
                                     </div>
                                 )

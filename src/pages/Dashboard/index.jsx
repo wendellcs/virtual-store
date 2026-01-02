@@ -38,7 +38,6 @@ export default function Dashboard(){
     async function getProducts() {
         await axios.get('http://localhost:8000/products')
         .then((data) => {
-            console.log(data.data)
             setProducts(data.data)
         })
         .catch(err => {
@@ -75,8 +74,8 @@ export default function Dashboard(){
     }
 
     async function handleDeleteProduct(id) {
-        await axios.delete(`http://localhost:8000/admin/products/${id}`, {withCredentials: true})
-        .then(() => {
+        await axios.delete(`http://localhost:8000/products/${id}`, {withCredentials: true})
+        .then((data) => {
             getProducts()
         })
         .catch(err => {
@@ -267,7 +266,7 @@ export default function Dashboard(){
                                         <p className="product-price-card">{p.price_card}</p>
                                     </div>
 
-                                    <button className="btn delete" onClick={() => handleDeleteProduct(p.id)}>Excluir</button>
+                                    <button className="btn delete" onClick={() => handleDeleteProduct(p._id)}>Excluir</button>
                                 </div>
                             </div>
                         )
