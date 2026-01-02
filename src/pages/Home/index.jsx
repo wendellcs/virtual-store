@@ -7,6 +7,8 @@ import axios from 'axios'
 import imageTest from './teste.avif'
 
 export default function Home() {
+    const [sidebar, setSidebar] = useState(false)
+
     const [productList, setProductList] = useState([])
 
     useEffect(() => {
@@ -20,10 +22,10 @@ export default function Home() {
     }, [])
     return (
         <div className="home-container">
-            <Sidebar/>
+            <Sidebar sidebar={sidebar}/>
 
             <div className="content-container">
-                <Header/>
+                <Header sidebar={sidebar} setSidebar={setSidebar}/>
 
                 <main className="content">
                     <div className="search-container">

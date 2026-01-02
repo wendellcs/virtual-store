@@ -2,9 +2,9 @@ import { IoHomeOutline, IoShirtOutline, IoPricetagOutline } from "react-icons/io
 import { FiSmartphone, FiWatch, FiShoppingBag } from "react-icons/fi";
 import { CiStar, CiLaptop, CiHeadphones } from "react-icons/ci";
 
-export default function Sidebar(){
+export default function Sidebar({sidebar}){
     return (
-        <div className="sidebar-container">
+        <div className={`sidebar-container ${sidebar ? 'hidden' : ''}`}>
             <div className="box">
                 <h2 className="sidebar-title">Menu principal</h2>
 
