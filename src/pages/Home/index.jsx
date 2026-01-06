@@ -13,7 +13,7 @@ export default function Home() {
 
     useEffect(() => {
         async function getProducts() {
-            await axios.get('http://127.0.0.1:8000/products')
+            await axios.get('https://compra-facil.onrender.com/products')
             .then((data) => {
                 setProductList(data.data)
             })

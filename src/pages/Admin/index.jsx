@@ -16,7 +16,7 @@ export default function Admin(){
             return
         }
 
-        axios.post('http://localhost:8000/admin/login', {
+        axios.post('https://compra-facil.onrender.com/admin/login', {
             email,
             password
         },{ withCredentials: true })

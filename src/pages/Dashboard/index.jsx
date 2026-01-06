@@ -20,7 +20,7 @@ export default function Dashboard(){
     const navigate = useNavigate()
     useEffect(() => {
         async function validateAccess() {
-            await axios.get('http://localhost:8000/admin/access', {withCredentials: true})
+            await axios.get('https://compra-facil.onrender.com/admin/access', {withCredentials: true})
             .then(() => {
                 setAllowed(true)
                 getProducts()
@@ -35,7 +35,7 @@ export default function Dashboard(){
     }, [])
 
     async function getProducts() {
-        await axios.get('http://localhost:8000/products')
+        await axios.get('https://compra-facil.onrender.com/products')
         .then((data) => {
             setProducts(data.data)
         })
@@ -61,7 +61,7 @@ export default function Dashboard(){
         formData.append('productLink', productLink)
         formData.append('image', image)
 
-        await axios.post('http://localhost:8000/products', formData, {withCredentials: true})
+        await axios.post('https://compra-facil.onrender.com/products', formData, {withCredentials: true})
         .then(() => {
             alert('Produto cadastrado com sucesso!')
             getProducts()
@@ -72,7 +72,7 @@ export default function Dashboard(){
     }
 
     async function handleDeleteProduct(id) {
-        await axios.delete(`http://localhost:8000/products/${id}`, {withCredentials: true})
+        await axios.delete(`https://compra-facil.onrender.com/products/${id}`, {withCredentials: true})
         .then((data) => {
             getProducts()
         })
@@ -82,7 +82,7 @@ export default function Dashboard(){
     }
 
     async function handleLogout() {
-        await axios.post('http://localhost:8000/admin/logout',{}, {withCredentials: true})
+        await axios.post('https://compra-facil.onrender.com/admin/logout',{}, {withCredentials: true})
         .then(() => {
             setAllowed(false)
             navigate('/')
