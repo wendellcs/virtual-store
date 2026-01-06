@@ -9,7 +9,7 @@ export default function Header({sidebar , setSidebar}) {
                 <FiShoppingBag className='icon big' />
             </div>
 
-            <h1 className="main-title">Nome da loja</h1>
+            <h1 className="main-title">Compra Fácil</h1>
         </header>
     )
 }
