@@ -9,7 +9,6 @@ export default function Dashboard(){
     const [allowed, setAllowed] = useState(false)
      
     const [name, setName] = useState('')
-    const [description, setDescription] = useState('')
     const [tag, setTag] = useState('')
     const [price, setPrice] = useState('')
     const [parts, setParts] = useState(1)
@@ -48,14 +47,13 @@ export default function Dashboard(){
     async function handleFormSubmit(e){
         e.preventDefault()
 
-        if (!name || !description || !tag || !price || !parts || !partsPrice || !productLink || !image){
+        if (!name || !tag || !price || !parts || !partsPrice || !productLink || !image){
             alert('Por favor, preencha todos os campos.')
             return
         }
 
         const formData = new FormData()
         formData.append('name', name)
-        formData.append('description', description)
         formData.append('tag', tag)
         formData.append('price', Number(price))
         formData.append('parts', Number(parts))
@@ -116,11 +114,6 @@ export default function Dashboard(){
                 <div className="box">
                     <label htmlFor="product-name">Nome</label>
                     <input type="text" id="product-name" value={name} onChange={e => setName(e.target.value)}/>
-                </div>
-
-                <div className="box">
-                    <label htmlFor="product-description">Descrição ( caracteristicas )</label>
-                    <input type="text" id="product-description" value={description} onChange={e => setDescription(e.target.value)}/>
                 </div>
 
                 <div className="box">
