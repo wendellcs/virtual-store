@@ -1,0 +1,22 @@
+@use '../1-base/_variables'
+.about-container
+    display: flex 
+    flex-direction: column
+    min-height: 100dvh
+
+    #about 
+        flex: 1
+        padding: 20px 10px
+
+        img 
+            width: 100%
+            max-width: 300px
+            margin-top: 20px
+
+        h2 
+            margin-bottom: 20px
+            color: variables.$primary-dark-color
+
+        p:not(:first-of-type)
+            margin-top: 20px  
+        

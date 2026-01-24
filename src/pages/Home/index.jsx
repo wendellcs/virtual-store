@@ -4,7 +4,7 @@ import Menu from "../../components/Menu"
 import { CiSearch } from "react-icons/ci";
 import { Link } from "react-router-dom";
 import { FiShoppingCart } from "react-icons/fi";
-import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import Loading from "../../components/Loading";
 import axios from 'axios'
 import Footer from "../../components/Footer";
 
@@ -13,7 +13,6 @@ export default function Home() {
     const [productList, setProductList] = useState([])
     const [loading, setLoading] = useState(false)
 
-    const [query, setQuery] = useState("")
     const [results, setResults] = useState([])
 
     const productsContainerRef = useRef(null)
@@ -72,10 +71,7 @@ export default function Home() {
 
                         <div className="products" ref={productsContainerRef}>
 
-                            {loading && <div className="load-container"> 
-                                <AiOutlineLoading3Quarters className="icon loading"/>
-                                <p className="text small">Carregando produtos...</p>
-                            </div>}
+                            {loading && <Loading/>}
                             {results.length > 0 && results.map(p => {
                                 return (
                                     <div className="card" key={p._id}>

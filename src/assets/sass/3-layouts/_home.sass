@@ -3,15 +3,17 @@
 
 .home-container
     display: flex 
+    min-height: 100dvh
 
     .content-container
         width: 100% 
+        min-height: 100%
+        display: flex
+        flex-direction: column
 
         .content 
             padding: 20px
-            
-            @include utilities.mobile(738px) 
-                padding: 10px 20px 
+            flex: 1
 
             .search-container 
                 margin-bottom: 30px
@@ -47,9 +49,7 @@
                     flex-wrap: wrap
                     justify-content: space-between
                     row-gap: 15px
-
-                    .load-container
-                        margin: 0 auto
+                    height: 100% !important
 
                     .card 
                         border: 1px solid variables.$border-color
