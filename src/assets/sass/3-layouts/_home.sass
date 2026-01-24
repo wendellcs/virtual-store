@@ -8,90 +8,59 @@
         width: 100% 
 
         .content 
-            padding: 20px 80px
+            padding: 20px
             
             @include utilities.mobile(738px) 
                 padding: 10px 20px 
 
             .search-container 
-                margin: 20px auto 30px auto
+                margin-bottom: 30px
                 position: relative
                 width: 100%
-                max-width: 500px
 
                 .search-icon 
                     position: absolute
-                    top: 38px
-                    left: 10px
+                    top: 8px
+                    right: 10px
 
                 input   
-                    margin: 30px 0 
                     width: 100%
-                    max-width: 500px
                     height: 40px
                     border-radius: 8px
-                    padding-left: 40px
+                    padding-left: 10px
+                    border: 1px solid variables.$border-color
+
+                    &:focus 
+                        outline: none
+                        border-width: 2px
+
+                .icon 
+                    color: variables.$border-color !important
 
             .container-products
-                @include utilities.mobile( 1070px) 
-                    .products
-                        justify-content: center
-
-                @include utilities.mobile (400px)
-                    .title
-                        text-align: center !important
-
-                    .card
-                        margin: 10px auto
-
-                .title 
-                    font-size: 2.2rem
-                    font-weight: 600
-                    margin-bottom: 15px
-                    color: variables.$title-color
-                    text-align: left
+                .title.subtitle
+                    color: variables.$primary-dark-color
 
                 .products
-                    margin-top:40px
+                    margin-top: 40px
                     display: flex
                     flex-wrap: wrap
-                    gap: 30px
+                    justify-content: space-between
+                    row-gap: 15px
+
+                    .load-container
+                        margin: 0 auto
 
                     .card 
                         border: 1px solid variables.$border-color
                         border-radius: 8px
-                        width: 320px
-                        height: 500px
-                        padding: 15px
-
-                        @include utilities.mobile( 1025px) 
-                            width: 280px
-
-                        @include utilities.mobile( 1025px) 
-                            width: 400px
-
-                            .card-image 
-                                max-width: 400px !important
-
-                        @include utilities.mobile(738px) 
-                            width: 100%
-                            margin: 0 10px
-
-                            .card-image 
-                                max-width: 100% !important
-
-                        @include utilities.mobile(600px) 
-                            width: 280px
-                            margin: 0 10px
-                            height: 480px
-
-                            .product-name 
-                                font-size: 1.6rem !important
+                        width: 170px
+                        height: 340px
+                        padding: 5px
 
                         .card-image 
                             width: 100%
-                            max-width: 300px
-                            height: 300px
+                            height: 180px
                             position: relative
         
                             img 
@@ -101,25 +70,24 @@
 
                             .product-tag 
                                 position: absolute
-                                top: 10px
+                                top: 5px
                                 background-color: variables.$primary-color
                                 padding: 5px
                                 color: white
                                 font-weight: 600
-                                font-size: 1.4rem
-                                border-radius: 5px
+                                font-size: 1.2rem
+                                border-radius: 4px
 
                         .product-name 
-                            height: 90px
-                            font-size: 1.8rem
-                            margin: 5px 0 10px 0
+                            height: 35px
+                            overflow: hidden
+                            font-size: 1.4rem
                             color: variables.$title-color
                             text-align: left
 
                         .card-bottom 
-                            display: flex
-                            justify-content: space-between
-                        
+                            margin-top: 10px
+
                             &-left
                                 text-align: left
 
@@ -129,29 +97,10 @@
                                     color: variables.$primary-color
 
                                 .product-price-card
-                                    font-size: 1.6rem
+                                    font-size: 1.4rem
                                     color: variables.$text-color
                                     margin: 5px 0
-
-                            .btn.buy 
-                                width: 50px
-                                height: 50px
-                                display: flex
-                                align-items: center
-                                justify-content: center
-                                border-radius: 50px
-                                background-color: variables.$primary-color
-                                cursor: pointer
 
                                 &:hover 
                                     background-color: variables.$primary-dark-color
                                 
-                                .icon 
-                                    color: white
-                                    font-size: 2.4rem
-                                    transform: translateX(-2px)
-                                    
-
-
-                        
-            

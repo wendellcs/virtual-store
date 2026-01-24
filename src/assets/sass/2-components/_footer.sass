@@ -1,0 +1,21 @@
+@use '../1-base/_variables'
+@use '../1-base/_utilities'
+
+footer 
+    text-align: center
+    padding: 20px 0
+    background: #7C3BED
+    background: linear-gradient(40deg, rgba(124, 59, 237, 1) 0%, rgba(88, 17, 212, 1) 100%)
+
+    nav
+        margin-top: 10px
+        li
+            margin: 0 15px
+            cursor: pointer
+
+            a
+                color: variables.$light-color
+                font-size: 1.2rem
+                
+            &:hover 
+                text-decoration: underline
