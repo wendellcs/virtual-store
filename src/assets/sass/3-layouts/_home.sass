@@ -15,30 +15,6 @@
             padding: 20px
             flex: 1
 
-            .search-container 
-                margin-bottom: 30px
-                position: relative
-                width: 100%
-
-                .search-icon 
-                    position: absolute
-                    top: 8px
-                    right: 10px
-
-                input   
-                    width: 100%
-                    height: 40px
-                    border-radius: 8px
-                    padding-left: 10px
-                    border: 1px solid variables.$border-color
-
-                    &:focus 
-                        outline: none
-                        border-width: 2px
-
-                .icon 
-                    color: variables.$border-color !important
-
             .container-products
                 .title.subtitle
                     color: variables.$primary-dark-color
@@ -51,56 +27,4 @@
                     row-gap: 15px
                     height: 100% !important
 
-                    .card 
-                        border: 1px solid variables.$border-color
-                        border-radius: 8px
-                        width: 170px
-                        height: 340px
-                        padding: 5px
-
-                        .card-image 
-                            width: 100%
-                            height: 180px
-                            position: relative
-        
-                            img 
-                                width: 100%
-                                height: 100%
-                                object-fit: contain
-
-                            .product-tag 
-                                position: absolute
-                                top: 5px
-                                background-color: variables.$primary-color
-                                padding: 5px
-                                color: white
-                                font-weight: 600
-                                font-size: 1.2rem
-                                border-radius: 4px
-
-                        .product-name 
-                            height: 35px
-                            overflow: hidden
-                            font-size: 1.4rem
-                            color: variables.$title-color
-                            text-align: left
-
-                        .card-bottom 
-                            margin-top: 10px
-
-                            &-left
-                                text-align: left
-
-                                .product-price 
-                                    font-size: 2rem
-                                    font-weight: 600
-                                    color: variables.$primary-color
-
-                                .product-price-card
-                                    font-size: 1.4rem
-                                    color: variables.$text-color
-                                    margin: 5px 0
-
-                                &:hover 
-                                    background-color: variables.$primary-dark-color
-                                
+                    @extend %card-style

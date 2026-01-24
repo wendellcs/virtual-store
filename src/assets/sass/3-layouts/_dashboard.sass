@@ -1,26 +1,28 @@
 @use '../1-base/variables'
+@use '../1-base/_utilities'
+
 .dashboard-container
     position: relative
+
     h1 
         text-align: center
-        font-size: 2.8rem
-        color: variables.$primary-color
-        margin: 40px 0 20px 0
+        color: variables.$primary-color !important
+        margin: 40px 0 20px 0;
 
     h2 
         text-align: center
-        font-size: 1.8rem
 
     form 
         width: 100%
-        max-width: 400px
+        max-width: 350px
         margin: 40px auto 0 auto
+        border: 1px solid variables.$border-color
+        border-radius: 8px
+        padding: 20px
         
         h3 
             text-align: center
-            font-size: 1.4rem 
-            font-weight: 400
-            margin-bottom: 20px
+            margin-bottom: 30px
 
         .box 
             label 
@@ -75,12 +77,10 @@
         max-width: 1200px
         text-align: center
         margin: 40px auto
-        padding: 40px 0
-        border-top: 1px solid variables.$border-color
+        padding: 20px
 
         h2 
             margin-bottom: 40px
-            font-size: 2.4rem
             color: variables.$primary-color
 
         .box 
@@ -120,69 +120,22 @@
             flex-wrap: wrap
             gap: 20px
 
+            @extend %card-style
+
             .card 
-                border: 1px solid variables.$border-color
+                height: 340px
+                width: 160px
+
+            .btn.delete
+                width: 100%
+                height: 35px
+                margin-top: 10px
                 border-radius: 8px
-                width: 320px
-                height: 500px
-                padding: 15px
-                
-                .card-image 
-                    width: 100%
-                    max-width: 300px
-                    height: 300px
-                    position: relative
-
-                    img 
-                        width: 100%
-                        height: 100%
-                        object-fit: contain
-
-                    .product-tag 
-                        position: absolute
-                        top: 10px
-                        background-color: variables.$primary-color
-                        padding: 5px
-                        color: white
-                        font-weight: 600
-                        font-size: 1.4rem
-                        border-radius: 5px
-
-                .product-name 
-                    display: block
-                    height: 100px
-                    font-size: 1.8rem
-                    margin: 5px 0 10px 0
-                    color: variables.$title-color
-                    text-align: left
-
-                .card-bottom 
-                    display: flex
-                    justify-content: space-between
-                    
-                    &-left
-                        text-align: left
-
-                        .product-price 
-                            font-size: 2rem
-                            font-weight: 600
-                            color: variables.$primary-color
-
-                        .product-price-card
-                            font-size: 1.6rem
-                            color: variables.$text-color
-                            margin: 5px 0
-
-                    .btn.delete
-                        display: block
-                        width: 80px
-                        height: 40px
-                        border-radius: 8px
-                        background-color: variables.$danger-color
-                        color: white
-                        font-size: 1.6rem
-                        font-weight: bold
-                        letter-spacing: 1px
+                background-color: variables.$danger-color
+                color: white
+                font-size: 1.6rem
+                font-weight: bold
+                letter-spacing: 1px
     
     .btn.logout , .btn.top
         display: block
@@ -199,11 +152,10 @@
             background-color: variables.$primary-dark-color
 
     .btn.logout 
-        right: 30px
-        width: 100px
-        top: 0px
-
-        border-radius: 8px
+        right: 20px
+        width: 50px
+        top: -5px
+        border-radius: 4px
 
     .btn.top
         position: absolute 

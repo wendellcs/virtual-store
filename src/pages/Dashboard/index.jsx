@@ -1,8 +1,21 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { CiSearch } from "react-icons/ci";
 import { FaArrowUp } from "react-icons/fa";
+import SearchBar from "../../components/SearchBar";
+
+function ConfirmDeletion(){
+    return (
+        <div className="confirm-deletion">
+            <p className="text big">Deseja deletar esse produto?</p>
+
+            <div>
+                <button className="btn option confirm">Sim</button>
+                <button className="btn option cancel">Não</button>
+            </div>
+        </div>
+    )
+}
 
 export default function Dashboard(){
     const [products, setProducts] = useState([])
@@ -15,6 +28,10 @@ export default function Dashboard(){
     const [partsPrice, setPartsPrice] = useState(0)
     const [productLink, setProductLink] = useState('')
     const [image, setImage] = useState(null)
+
+    const [showConfirmDeletion, setShowConfirmDeletion ] = useState(false)
+
+    const [results, setResults] = useState([])
 
 
     const navigate = useNavigate()
@@ -102,14 +119,14 @@ export default function Dashboard(){
     return (
         <div className="dashboard-container">
             <button className="btn logout" onClick={() => handleLogout()}>Sair</button>
-            <h1>Dashboard</h1>
+            <h1 className="title main">Dashboard</h1>
 
-            <h2>
+            <h2 className="title subtitle">
                 Aqui você irá criar os produtos
             </h2>
 
             <form onSubmit={e => handleFormSubmit(e)}>
-                <h3>Insira as informações do produto</h3>
+                <h3 className="title small">Insira as informações do produto</h3>
 
                 <div className="box">
                     <label htmlFor="product-name">Nome</label>
@@ -236,15 +253,12 @@ export default function Dashboard(){
             </form>
 
             <div className="products-container">
-                <h2>Produtos já cadastrados</h2>
-
-                <div className="box">
-                    <CiSearch className="icon big search-icon"/>
-                    <input type="text" placeholder="TVs..."/>
-                </div>
+                <h2 className="title subtitle">Produtos já cadastrados</h2>
+                
+                <SearchBar setResults={setResults}/>
 
                 <div className="products">
-                    {products.length > 0 && products.map(p => {
+                    {results.length > 0 && results.map(p => {
                         return (
                             <div className="card" key={p._id}>
                                 <div className="card-image">
@@ -256,7 +270,28 @@ export default function Dashboard(){
                                 <div className="card-bottom">
                                     <div className="card-bottom-left">
                                         <p className="product-price">R$ {p.price}</p>
-                                        <p className="product-price-card">{p.price_card}</p>
+                                        <p className="product-price-card">Até {p.parts}x de R${p.partsPrice}</p>
+                                    </div>
+
+                                    <button className="btn delete" onClick={() => handleDeleteProduct(p._id)}>Excluir</button>
+                                </div>
+                            </div>
+                        )
+                    })}
+
+                    {products.length > 0 && results.length < 1 &&  products.map(p => {
+                        return (
+                            <div className="card" key={p._id}>
+                                <div className="card-image">
+                                    <img src={p.imageUrl} alt="Product-name image" />
+                                    <p className="product-tag">{p.tag}</p>
+                                </div>
+
+                                <h3 className="product-name">{p.name}</h3>
+                                <div className="card-bottom">
+                                    <div className="card-bottom-left">
+                                        <p className="product-price">R$ {p.price}</p>
+                                        <p className="product-price-card">Até {p.parts}x de R${p.partsPrice}</p>
                                     </div>
 
                                     <button className="btn delete" onClick={() => handleDeleteProduct(p._id)}>Excluir</button>

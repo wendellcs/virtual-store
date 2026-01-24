@@ -1,12 +1,14 @@
 import { useEffect, useState, useRef } from "react";
 import Header from "../../components/Header"
 import Menu from "../../components/Menu"
-import { CiSearch } from "react-icons/ci";
+
 import { Link } from "react-router-dom";
 import { FiShoppingCart } from "react-icons/fi";
 import Loading from "../../components/Loading";
 import axios from 'axios'
 import Footer from "../../components/Footer";
+
+import SearchBar from "../../components/SearchBar";
 
 export default function Home() {
     const [menu, setMenu] = useState(false)
@@ -38,19 +40,6 @@ export default function Home() {
         getProducts()
     }, [])
 
-    async function handleSearch(e) {
-        const value = e.target.value
-        if (value.length < 2){
-            setResults([])
-            return
-        }
-
-        await axios.get(`http://127.0.0.1:8000/products/search?q=${value}`)
-        .then(data => {
-            setResults(data.data)
-        })
-    }
-
     return (
         <div className="home-container">
             {/* <Menu menu={menu}/> */}
@@ -61,10 +50,7 @@ export default function Home() {
                 <Menu menu={menu}/>
 
                 <main className="content">
-                    <div className="search-container">
-                        <CiSearch className="icon big search-icon"/>
-                        <input type="text" placeholder="O que você está procurando?" onChange={(e) => handleSearch(e)}/>
-                    </div>
+                    <SearchBar setResults={setResults}/>
 
                     <div className="container-products">
                         <h2 className="title subtitle">Nossos produtos</h2>
