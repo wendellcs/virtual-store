@@ -3,28 +3,29 @@
 .btn 
     outline: none
     border: none
-    display: flex
-
-    font-size: 1.4rem
-    color: variables.$btn-text-color
     cursor: pointer
     transition: .3s
-    gap: 8px
+    background: none
 
-    &.sidebar
-        width: 100%
-        padding: 12px 16px
-        background-color: transparent
-        border-radius: 4px
+    &.menu
+        display: flex
         align-items: center
-        font-size: 1.4rem
+        gap: 5px
+        height: 40px
+        padding: 0 8px
+        border-radius: 8px
+        background: #7C3BED
+        background: linear-gradient(40deg, rgba(124, 59, 237, 1) 0%, rgba(88, 17, 212, 1) 100%)
+        font-size: 1.2rem
+        color: variables.$light-color
+        filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))
+        font-weight: 600
 
-        &:hover
-            background-color: variables.$border-color
-            color: variables.$primary-color
+        .icon 
+            color: variables.$light-color
 
-        &:hover .icon
-            color: variables.$primary-color
+
+
 
 
     

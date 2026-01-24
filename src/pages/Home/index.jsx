@@ -1,15 +1,22 @@
 import { useEffect, useState } from "react";
 import Header from "../../components/Header"
-import Sidebar from "../../components/Sidebar"
+import Menu from "../../components/Menu"
 import { CiSearch } from "react-icons/ci";
 import { Link } from "react-router-dom";
 import { FiShoppingCart } from "react-icons/fi";
 import axios from 'axios'
 
 export default function Home() {
-    const [sidebar, setSidebar] = useState(false)
+    const [menu, setMenu] = useState(false)
 
     const [productList, setProductList] = useState([])
+
+    const [screenSize, setScreenSize] = useState(undefined)
+
+    useEffect(() => {
+        const size = window.screen.width
+        setScreenSize(size)
+    }, [])
 
     useEffect(() => {
         async function getProducts() {
@@ -26,10 +33,13 @@ export default function Home() {
     }, [])
     return (
         <div className="home-container">
-            <Sidebar sidebar={sidebar}/>
+            {screenSize >= 640 && <Menu menu={menu} menuStyle = {2}/>}
+            
 
             <div className="content-container">
-                <Header sidebar={sidebar} setSidebar={setSidebar}/>
+                <Header menu={menu} setmenu={setMenu} screenSize={screenSize}/>
+
+                {screenSize < 640 && <Menu menu={menu} menuStyle = {1}/>}
 
                 <main className="content">
                     <div className="search-container">

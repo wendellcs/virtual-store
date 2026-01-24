@@ -1,0 +1,11 @@
+// @use ./_variables
+
+@mixin mobile( $size) 
+  @media (min-width: $size)
+    @content
+
+
+// @media (min-width: 640px) { }   /* tablets pequenos */
+// @media (min-width: 768px) { }   /* tablets */
+// @media (min-width: 1024px) { }  /* notebook */
+// @media (min-width: 1280px) { }  /* desktop grande */

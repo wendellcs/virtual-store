@@ -1,17 +1,19 @@
 @use '../1-base/_variables'
+@use '../1-base/_utilities'
 
 header 
     border-bottom: 1px solid variables.$border-color
-    display: flex
-    align-items: center
-    padding: 15px 80px
-    gap: 60px
+    padding: 30px 80px
+    position: relative
+    text-align: center
+    background: #7C3BED
+    background: linear-gradient(40deg, rgba(124, 59, 237, 1) 0%, rgba(88, 17, 212, 1) 100%)
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.20)
 
-    .header-icons
-        .icon:first-of-type
-            margin-right: 15px
+    h1 , .shopping
+        color: variables.$light-color
 
-            &:hover 
-                cursor: pointer
-                color: variables.$primary-color
-
+    .shopping
+        position: absolute
+        top: 34px
+        left: 18px

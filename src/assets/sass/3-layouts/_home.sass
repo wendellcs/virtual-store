@@ -1,4 +1,5 @@
 @use '../1-base/_variables'
+@use '../1-base/_utilities'
 
 .home-container
     display: flex 
@@ -8,6 +9,9 @@
 
         .content 
             padding: 20px 80px
+            
+            @include utilities.mobile(738px) 
+                padding: 10px 20px 
 
             .search-container 
                 margin: 20px auto 30px auto
@@ -29,6 +33,16 @@
                     padding-left: 40px
 
             .container-products
+                @include utilities.mobile( 1070px) 
+                    .products
+                        justify-content: center
+
+                @include utilities.mobile (400px)
+                    .title
+                        text-align: center !important
+
+                    .card
+                        margin: 10px auto
 
                 .title 
                     font-size: 2.2rem
@@ -49,7 +63,31 @@
                         width: 320px
                         height: 500px
                         padding: 15px
-                        
+
+                        @include utilities.mobile( 1025px) 
+                            width: 280px
+
+                        @include utilities.mobile( 1025px) 
+                            width: 400px
+
+                            .card-image 
+                                max-width: 400px !important
+
+                        @include utilities.mobile(738px) 
+                            width: 100%
+                            margin: 0 10px
+
+                            .card-image 
+                                max-width: 100% !important
+
+                        @include utilities.mobile(600px) 
+                            width: 280px
+                            margin: 0 10px
+                            height: 480px
+
+                            .product-name 
+                                font-size: 1.6rem !important
+
                         .card-image 
                             width: 100%
                             max-width: 300px
@@ -80,7 +118,6 @@
 
                         .card-bottom 
                             display: flex
-                            height: 50px
                             justify-content: space-between
                         
                             &-left
