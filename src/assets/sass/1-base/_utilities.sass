@@ -1,65 +1,14 @@
 @use './_variables'
 
-%card-style
-  .card 
-    border: 1px solid variables.$border-color
-    border-radius: 8px
-    width: 170px
-    height: 340px
-    padding: 5px
-
-    .card-image 
-        width: 100%
-        height: 180px
-        position: relative
-
-        img 
-            width: 100%
-            height: 100%
-            object-fit: contain
-
-        .product-tag 
-            position: absolute
-            top: 5px
-            background-color: variables.$primary-color
-            padding: 5px
-            color: white
-            font-weight: 600
-            font-size: 1.2rem
-            border-radius: 4px
-
-    .product-name 
-        height: 35px
-        overflow: hidden
-        font-size: 1.4rem
-        color: variables.$title-color
-        text-align: left
-
-    .card-bottom 
-        margin-top: 10px
-
-        &-left
-            text-align: left
-
-            .product-price 
-                font-size: 2rem
-                font-weight: 600
-                color: variables.$primary-color
-
-            .product-price-card
-                font-size: 1.4rem
-                color: variables.$text-color
-                margin: 5px 0
+@mixin responsive( $size) 
+  @media (min-width: $size)
+    @content
 
 @keyframes spin
   0%
     transform: rotate(0deg)
   100%
     transform: rotate(360deg)
-
-@mixin mobile( $size) 
-  @media (min-width: $size)
-    @content
 
 
 // @media (min-width: 640px) { }   /* tablets pequenos */

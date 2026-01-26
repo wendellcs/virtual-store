@@ -21,10 +21,13 @@
 
                 .products
                     margin-top: 40px
-                    display: flex
-                    flex-wrap: wrap
-                    justify-content: space-between
-                    row-gap: 15px
+                    display: grid
+                    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr))
+                    gap: 15px
                     height: 100% !important
 
-                    @extend %card-style
+                    @include utilities.responsive(720px)
+                        max-width: 1000px
+                        margin: 40px auto
+                        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr))
+                        gap: 20px

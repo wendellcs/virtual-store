@@ -1,14 +1,12 @@
 import { useEffect, useState, useRef } from "react";
 import Header from "../../components/Header"
 import Menu from "../../components/Menu"
-
-import { Link } from "react-router-dom";
-import { FiShoppingCart } from "react-icons/fi";
 import Loading from "../../components/Loading";
 import axios from 'axios'
 import Footer from "../../components/Footer";
-
 import SearchBar from "../../components/SearchBar";
+import Card from "../../components/Card";
+import Tags from "../../components/Tags";
 
 export default function Home() {
     const [menu, setMenu] = useState(false)
@@ -19,10 +17,9 @@ export default function Home() {
 
     const productsContainerRef = useRef(null)
 
-    useEffect(() => {
-        console.log(productsContainerRef.current.children?.length)
-        console.log(productsContainerRef)
-    }, [productList])
+    // useEffect(() => {
+         // console.log(productsContainerRef.current.children?.length)
+    // }, [productList])
 
     useEffect(() => {
         async function getProducts() {
@@ -42,15 +39,14 @@ export default function Home() {
 
     return (
         <div className="home-container">
-            {/* <Menu menu={menu}/> */}
-
             <div className="content-container">
                 <Header menu={menu} setmenu={setMenu}/>
-
-                <Menu menu={menu}/>
+                <Menu menu={menu}/> 
 
                 <main className="content">
                     <SearchBar setResults={setResults}/>
+
+                    {/* <Tags/> */}
 
                     <div className="container-products">
                         <h2 className="title subtitle">Nossos produtos</h2>
@@ -60,42 +56,13 @@ export default function Home() {
                             {loading && <Loading/>}
                             {results.length > 0 && results.map(p => {
                                 return (
-                                    <div className="card" key={p._id}>
-                                        <div className="card-image">
-                                            <img src={p.imageUrl} alt="Product-name image" />
-                                            <p className="product-tag">{p.tag}</p>
-                                        </div>
-
-                                        <h3 className="product-name">{p.name}</h3>
-                                        <div className="card-bottom">
-                                            <div className="card-bottom-left">
-                                                <p className="product-price">R$ {p.price}</p>
-                                                <p className="product-price-card">Até {p.parts}x de R${p.partsPrice}</p>
-                                            </div>
-                                            <Link className="btn buy" target="_blank" to={p.productLink}><FiShoppingCart className="icon big cart"/></Link>
-                                        </div>
-                                    </div>
+                                    <Card product={p} key={p._id}/>
                                 )})
-                                
                             }
 
                             {productList.length > 0 && results.length < 1 && productList.map(p => {
                                 return (
-                                    <div className="card" key={p._id}>
-                                        <div className="card-image">
-                                            <img src={p.imageUrl} alt="Product-name image" />
-                                            <p className="product-tag">{p.tag}</p>
-                                        </div>
-
-                                        <h3 className="product-name">{p.name}</h3>
-                                        <div className="card-bottom">
-                                            <div className="card-bottom-left">
-                                                <p className="product-price">R$ {p.price}</p>
-                                                <p className="product-price-card">Até {p.parts}x de R${p.partsPrice}</p>
-                                            </div>
-                                            <Link className="btn buy" target="_blank" to={p.productLink}><FiShoppingCart className="icon big cart"/></Link>
-                                        </div>
-                                    </div>
+                                   <Card product={p} key={p._id}/>
                                 )
                             })}
                            

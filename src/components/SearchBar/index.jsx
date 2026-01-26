@@ -9,7 +9,7 @@ export default function SearchBar({setResults}){
             return
         }
 
-        await axios.get(`http://127.0.0.1:8000/products/search?q=${value}`)
+        await axios.get(`https://compra-facil.onrender.com/products/search?q=${value}`)
         .then(data => {
             setResults(data.data)
         })

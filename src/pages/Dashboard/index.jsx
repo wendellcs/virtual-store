@@ -2,7 +2,9 @@ import axios from "axios"
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { FaArrowUp } from "react-icons/fa";
-import SearchBar from "../../components/SearchBar";
+import SearchBar from "../../components/SearchBar"; 
+import { CATEGORIES, tags } from "../../services/tags-data";
+import Card from "../../components/Card";
 
 function ConfirmDeletion(){
     return (
@@ -32,7 +34,6 @@ export default function Dashboard(){
     const [showConfirmDeletion, setShowConfirmDeletion ] = useState(false)
 
     const [results, setResults] = useState([])
-
 
     const navigate = useNavigate()
     useEffect(() => {
@@ -90,7 +91,7 @@ export default function Dashboard(){
 
     async function handleDeleteProduct(id) {
         await axios.delete(`https://compra-facil.onrender.com/products/${id}`, {withCredentials: true})
-        .then((data) => {
+        .then(() => {
             getProducts()
         })
         .catch(err => {
@@ -138,83 +139,17 @@ export default function Dashboard(){
                     <select value={tag} id="tag" onChange={e => setTag(e.target.value)}>
                         <option value="">Selecione uma categoria</option>
                         
-                        {/* Tecnologia */}
-                        <option value="tvs">TVs</option>
-                        <option value="smartphones">Smartphones</option>
-                        <option value="tablets">Tablets</option>
-                        <option value="notebooks">Notebooks</option>
-                        <option value="computadores">Computadores</option>
-                        <option value="monitores">Monitores</option>
-                        <option value="perifericos">Periféricos</option>
-                        <option value="componentes">Componentes</option>
-                        <option value="armazenamento">Armazenamento</option>
-                        <option value="redes">Redes & Roteadores</option>
-                        <option value="automacao-residencial">Automação Residencial</option>
-
-                        {/* Games */}
-                        <option value="consoles">Consoles</option>
-                        <option value="jogos">Jogos</option>
-                        <option value="acessorios-gamer">Acessórios Gamer</option>
-
-                        {/* Áudio e Vídeo */}
-                        <option value="audio">Áudio</option>
-                        <option value="video">Vídeo</option>
-                        <option value="projetores">Projetores</option>
-                        <option value="cameras">Câmeras</option>
-                        <option value="drones">Drones</option>
-
-                        {/* Casa e Eletrodomésticos */}
-                        <option value="eletrodomesticos">Eletrodomésticos</option>
-                        <option value="moveis">Móveis</option>
-                        <option value="iluminacao">Iluminação</option>
-                        <option value="organizacao">Organização</option>
-                        <option value="climatizacao">Climatização</option>
-
-                        {/* Cozinha */}
-                        <option value="cozinha">Cozinha</option>
-
-                        {/* Moda */}
-                        <option value="roupas">Roupas</option>
-                        <option value="calcados">Calçados</option>
-                        <option value="acessorios-moda">Acessórios de Moda</option>
-
-                        {/* Beleza e Saúde */}
-                        <option value="beleza">Beleza</option>
-                        <option value="saude">Saúde</option>
-                        <option value="cosmeticos">Cosméticos</option>
-
-                        {/* Esporte e Lazer */}
-                        <option value="esporte">Esporte</option>
-                        <option value="fitness">Fitness</option>
-                        <option value="musculacao">Musculação</option>
-
-                        {/* Automotivo */}
-                        <option value="automotivo">Automotivo</option>
-
-                        {/* Ferramentas */}
-                        <option value="ferramentas">Ferramentas</option>
-                        <option value="ferramentas-eletricas">Ferramentas Elétricas</option>
-                        <option value="ferramentas-manuais">Ferramentas Manuais</option>
-
-                        {/* Música */}
-                        <option value="instrumentos-musicais">Instrumentos Musicais</option>
-
-                        {/* Infantil */}
-                        <option value="brinquedos">Brinquedos</option>
-                        <option value="infantil">Infantil</option>
-
-                        {/* Pet */}
-                        <option value="petshop">Pet Shop</option>
-                        <option value="acessorios-pet">Acessórios Pet</option>
-
-                        {/* Papelaria e Educação */}
-                        <option value="papelaria">Papelaria</option>
-                        <option value="materiais-escolares">Materiais Escolares</option>
-                        <option value="livros">Livros</option>
-                        <option value="cursos">Cursos</option>
-
-                        {/* Outros */}
-                        <option value="decoracao">Decoração</option>
+                        {Object.entries(CATEGORIES).map(([groupLabel, items]) => {
+                            return(
+                                <optgroup key={groupLabel} label={groupLabel}>
+                                    {Object.entries(items).map(([value, label]) => (
+                                        <option key={value} value={value}>
+                                        {label}
+                                        </option>
+                                    ))}
+                                </optgroup>
+                            )
+                        })}
                     </select>
                 </div>
 
@@ -260,43 +195,13 @@ export default function Dashboard(){
                 <div className="products">
                     {results.length > 0 && results.map(p => {
                         return (
-                            <div className="card" key={p._id}>
-                                <div className="card-image">
-                                    <img src={p.imageUrl} alt="Product-name image" />
-                                    <p className="product-tag">{p.tag}</p>
-                                </div>
-
-                                <h3 className="product-name">{p.name}</h3>
-                                <div className="card-bottom">
-                                    <div className="card-bottom-left">
-                                        <p className="product-price">R$ {p.price}</p>
-                                        <p className="product-price-card">Até {p.parts}x de R${p.partsPrice}</p>
-                                    </div>
-
-                                    <button className="btn delete" onClick={() => handleDeleteProduct(p._id)}>Excluir</button>
-                                </div>
-                            </div>
+                            <Card product={p} handleDeleteProduct ={handleDeleteProduct} key={p._id}/>
                         )
                     })}
 
                     {products.length > 0 && results.length < 1 &&  products.map(p => {
                         return (
-                            <div className="card" key={p._id}>
-                                <div className="card-image">
-                                    <img src={p.imageUrl} alt="Product-name image" />
-                                    <p className="product-tag">{p.tag}</p>
-                                </div>
-
-                                <h3 className="product-name">{p.name}</h3>
-                                <div className="card-bottom">
-                                    <div className="card-bottom-left">
-                                        <p className="product-price">R$ {p.price}</p>
-                                        <p className="product-price-card">Até {p.parts}x de R${p.partsPrice}</p>
-                                    </div>
-
-                                    <button className="btn delete" onClick={() => handleDeleteProduct(p._id)}>Excluir</button>
-                                </div>
-                            </div>
+                           <Card product={p} handleDeleteProduct ={handleDeleteProduct} key={p._id}/>
                         )
                     })}
                 </div>
