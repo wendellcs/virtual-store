@@ -19,7 +19,7 @@ export default function Card({product, handleDeleteProduct = null}){
                     <p className="product-price-card">Até {product.parts}x de R${product.partsPrice}</p>
                 </div>
 
-                {location === '/admin/dashboard' ? <button className="btn delete" onClick={() => handleDeleteProduct(p._id)}>Excluir</button> 
+                {location === '/admin/dashboard' ? <button className="btn delete" onClick={() => handleDeleteProduct(product._id)}>Excluir</button> 
                 : <Link className="btn buy" target="_blank" to={product.productLink}><FiShoppingCart className="icon big cart"/></Link>}
                 
             </div>
