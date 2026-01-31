@@ -1,17 +1,30 @@
 import axios from "axios"
 import { CiSearch } from "react-icons/ci";
 
-export default function SearchBar({setResults}){
+export default function SearchBar({pageDependencies}){
+    const {
+        currentPage,
+        setCurrentPage,
+        setResults,
+        setSearchPageData,
+    } = pageDependencies;
+
     async function handleSearch(e) {
         const value = e.target.value
         if (value.length < 2){
             setResults([])
+            setSearchPageData({})
             return
         }
+        setCurrentPage(1)
 
-        await axios.get(`https://compra-facil.onrender.com/products/search?q=${value}`)
+        axios.get(`https://compra-facil.onrender.com/products/search?q=${value}&page=${currentPage}&limit=12`)
         .then(data => {
-            setResults(data.data)
+            setResults(data.data.data)
+            setSearchPageData(data.data)
+        })
+        .catch(err => {
+            console.error('Erro ao buscar produtos:', err)
         })
     }
     return (

@@ -12,7 +12,7 @@ export default function Admin(){
         e.preventDefault()
 
         if (!email || !password){
-            console.log('Preencha todos os campos')
+            alert('Preencha todos os campos')
             return
         }
 
@@ -20,8 +20,7 @@ export default function Admin(){
             email,
             password
         },{ withCredentials: true })
-        .then(res => {
-            console.log(res, 'login status')
+        .then(() => {
             navigate('/admin/dashboard')
         })
         .catch(e => {

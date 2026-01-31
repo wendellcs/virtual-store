@@ -1,10 +1,11 @@
 import axios from "axios"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { FaArrowUp } from "react-icons/fa";
 import SearchBar from "../../components/SearchBar"; 
 import { CATEGORIES, tags } from "../../services/tags-data";
 import Card from "../../components/Card";
+import PageControls from "../../components/PageControls";
 
 function ConfirmDeletion(){
     return (
@@ -20,7 +21,17 @@ function ConfirmDeletion(){
 }
 
 export default function Dashboard(){
-    const [products, setProducts] = useState([])
+    const [productList, setProductList] = useState([])
+    
+    const [pageData, setPageData] = useState({})
+    const [currentPage, setCurrentPage] = useState(1)
+
+    const [searchPageData, setSearchPageData] = useState({})
+    const [results, setResults] = useState([])
+    
+    const isSearching = results.length > 0
+    const activePageData = isSearching ? searchPageData : pageData
+
     const [allowed, setAllowed] = useState(false)
      
     const [name, setName] = useState('')
@@ -33,15 +44,12 @@ export default function Dashboard(){
 
     const [showConfirmDeletion, setShowConfirmDeletion ] = useState(false)
 
-    const [results, setResults] = useState([])
-
     const navigate = useNavigate()
     useEffect(() => {
         async function validateAccess() {
             await axios.get('https://compra-facil.onrender.com/admin/access', {withCredentials: true})
             .then(() => {
                 setAllowed(true)
-                getProducts()
             })
             .catch(err => {
                 if (err.response?.status === 401){
@@ -53,14 +61,20 @@ export default function Dashboard(){
     }, [])
 
     async function getProducts() {
-        await axios.get('https://compra-facil.onrender.com/products')
+        await axios.get(`https://compra-facil.onrender.com/products?page=${currentPage}&limit=12`)
         .then((data) => {
-            setProducts(data.data)
+            setProductList(data.data.data)
+            setPageData(data.data)
         })
         .catch(err => {
             console.error('Algo deu errado ao buscar os produtos:', err)
         })
     }
+
+    useEffect(() => {
+        getProducts()
+        
+    }, [currentPage])
 
     async function handleFormSubmit(e){
         e.preventDefault()
@@ -107,13 +121,6 @@ export default function Dashboard(){
         })
         .catch(err => {
             console.error('Erro ao sair:', err)
-        })
-    }
-
-    function handleBackToTop(){
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
         })
     }
 
@@ -190,7 +197,7 @@ export default function Dashboard(){
             <div className="products-container">
                 <h2 className="title subtitle">Produtos já cadastrados</h2>
                 
-                <SearchBar setResults={setResults}/>
+                <SearchBar pageDependencies={{setResults, setSearchPageData, currentPage, setCurrentPage}}/>
 
                 <div className="products">
                     {results.length > 0 && results.map(p => {
@@ -199,7 +206,7 @@ export default function Dashboard(){
                         )
                     })}
 
-                    {products.length > 0 && results.length < 1 &&  products.map(p => {
+                    {productList.length > 0 && results.length < 1 &&  productList.map(p => {
                         return (
                            <Card product={p} handleDeleteProduct ={handleDeleteProduct} key={p._id}/>
                         )
@@ -207,7 +214,11 @@ export default function Dashboard(){
                 </div>
             </div>
 
-            <button className="btn top" onClick={() => handleBackToTop()}><FaArrowUp className="icon big"/></button>
+                {(productList.length > 0 || results.length > 0) && <PageControls pageControls = {{pageData: activePageData, currentPage, setCurrentPage}}/>}
+
+            <button className="btn top" onClick={() => {
+                window.scrollTo({ top: 0, behavior: 'smooth'})
+            }}><FaArrowUp className="icon big"/></button>
         </div>
     )
 }

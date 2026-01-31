@@ -45,3 +45,27 @@
         color: variables.$primary-color
         font-weight: 600
         font-size: 1.2rem
+
+    &.page 
+        width: 40px
+        height: 40px
+        border-radius: 50%
+        background: variables.$primary-gradient
+        border: 1px solid variables.$primary-color
+
+        &:hover 
+            transform: scale(1.05)
+
+        &:disabled
+            background: variables.$light-color
+            cursor: default
+
+            &:hover 
+                transform: none
+
+            .icon 
+                color: variables.$primary-color
+
+        .icon 
+            color: variables.$light-color
+            font-size: 1.8rem
