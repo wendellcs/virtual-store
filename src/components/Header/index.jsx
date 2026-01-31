@@ -16,7 +16,7 @@ export default function Header({}) {
 
             </div>
 
-            <h1 className="title main">Compra Fácil</h1>
+            <h1 className="title main">Compra Fácil By</h1>
         </header>
     )
 }

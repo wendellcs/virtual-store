@@ -73,7 +73,6 @@ export default function Dashboard(){
 
     useEffect(() => {
         getProducts()
-        
     }, [currentPage])
 
     async function handleFormSubmit(e){
@@ -206,7 +205,7 @@ export default function Dashboard(){
                         )
                     })}
 
-                    {productList.length > 0 && results.length < 1 &&  productList.map(p => {
+                    {productList.length > 0 && results.length < 1 && productList.map(p => {
                         return (
                            <Card product={p} handleDeleteProduct ={handleDeleteProduct} key={p._id}/>
                         )
