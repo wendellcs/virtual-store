@@ -1,4 +1,5 @@
 @use '../1-base/_variables'
+@use '../1-base/_utilities'
 .about-container
     display: flex 
     flex-direction: column
@@ -8,15 +9,133 @@
         flex: 1
         padding: 20px 10px
 
-        img 
-            width: 100%
-            max-width: 300px
-            margin-top: 20px
-
-        h2 
-            margin-bottom: 20px
+        .subtitle
             color: variables.$primary-dark-color
 
-        p:not(:first-of-type)
-            margin-top: 20px  
-        
+        img 
+            width: 100%
+            max-width: 320px
+            margin: 20px 0
+
+        h2 
+            margin: 20px 0
+            color: variables.$primary-dark-color
+
+
+        p 
+            width: 100%
+            max-width: 600px
+            margin: 20px auto
+            line-height: 1.6
+
+        .text-container
+            margin: 20px 0
+            padding: 10px
+            border: 1px solid variables.$border-color
+            border-radius: 8px
+            background: linear-gradient(40deg,rgba(209, 183, 247, .5) 0%, rgba(145, 117, 191, 0.05) 25%, rgba(90, 20, 211, 0.05) 64%, rgba(66, 17, 130, 0.15) 100%);
+
+            @include utilities.responsive(530px)
+                width: 450px
+                max-width: 100%
+                margin: 20px auto
+
+
+        .icon-frame
+            background: variables.$secondary-gradient
+            border-radius: 12px
+            display: flex
+            align-items: center
+            justify-content: center
+            transition: transform 0.3s ease
+
+            &:hover 
+                transform: scale(1.1)
+
+            .icon 
+                color: variables.$light-color
+                font-size: 3.6rem
+
+        .reasons 
+            margin: 40px 0
+
+            @include utilities.responsive(560px)
+                display: flex
+                flex-wrap: wrap
+                margin: 80px auto
+                justify-content: center
+                gap: 20px
+
+                .box 
+                    max-width: 200px !important
+                    margin: 0 !important
+
+            .box
+                display: flex
+                flex-direction: column
+                align-items: center
+                width: 100%
+                max-width: 250px
+                margin: 20px auto
+
+                .icon-frame
+                    width: 70px
+                    height: 70px
+                    margin-bottom: 15px
+                    
+        .quote 
+            font-size: 1.6rem
+            font-weight: bold
+            letter-spacing: .5px
+            color: variables.$text-dark-color
+            width: 100%
+            max-width: 360px
+            margin-bottom: 40px
+            border: 1px solid variables.$border-color
+            padding: 15px
+            border-radius: 12px
+            background: linear-gradient(40deg,rgba(209, 183, 247, .5) 0%, rgba(145, 117, 191, 0.05) 25%, rgba(90, 20, 211, 0.05) 64%, rgba(66, 17, 130, 0.15) 100%);
+
+            .highlight 
+                font-size: 1.6rem
+
+        .goals 
+            margin: 40px 0
+
+            @include utilities.responsive(530px)
+                width: 450px
+                max-width: 100%
+                margin: 40px auto
+            
+            li 
+                border: 1px solid variables.$border-color
+                border-radius: 8px
+                margin: 10px 0
+                display: flex
+                align-items: center
+                text-align: left
+                padding: 0 15px
+                transition: .3s
+                background: linear-gradient(40deg,rgba(209, 183, 247, .5) 0%, rgba(145, 117, 191, 0.05) 25%, rgba(90, 20, 211, 0.05) 64%, rgba(66, 17, 130, 0.15) 100%);
+
+                &:hover 
+                    transform: scale(1.04)
+                
+                &:first-of-type
+                    margin-top: 20px
+
+                .icon-frame
+                    width: 50px
+                    height: 40px
+                    margin-right: 20px
+
+                    .icon 
+                        font-size: 2.2rem 
+
+                p 
+                    font-size: 1.4rem
+                    font-weight: bold
+                    letter-spacing: .5px
+                    color: variables.$text-dark-color
+
+             

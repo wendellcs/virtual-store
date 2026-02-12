@@ -1,22 +1,30 @@
-import { FiShoppingBag } from "react-icons/fi";
-import { BsLayoutSidebar } from "react-icons/bs";
-import { BsArrow90DegLeft } from "react-icons/bs";
 import { Link } from "react-router-dom";
+import logo from '../../assets/images/logo-icon.png'
+import { IoMdMenu, IoMdClose } from "react-icons/io";
+import { useState } from "react";
 
 export default function Header({}) {
-    const currentPath = window.location.pathname
+    const [openDropdown, setOpenDropdown] = useState(false)
+
+    const location = window.location.pathname
 
     return (
         <header>
-            <div className="header-icons">
-                {/* <BsLayoutSidebar className='icon normal' onClick={() => setSidebar(!sidebar)}/> */}
-                <FiShoppingBag className='icon big shopping' />
-
-                {currentPath === '/about' && <Link to={'/'}><BsArrow90DegLeft className="icon go-back"/></Link>}
-
+            <div className="logo">
+                <img src={logo} alt="Logo Compra Fácil By" />
+            </div>
+            <Link to={'/'}><h1 className="title main">Compra Fácil By</h1></Link>
+            
+            <div className="dropdown-icon" onClick={() => setOpenDropdown(!openDropdown)}>
+                {!openDropdown ? <IoMdMenu className="icon menu"/> : <IoMdClose  className="icon close"/>}
             </div>
 
-            <h1 className="title main">Compra Fácil By</h1>
+            <div className={openDropdown ? 'dropdown' : 'dropdown hidden'}>
+                <ul>
+                    <li><Link className={location == '/' ? "link active" : "link"} to={'/'}>Inicio</Link></li>
+                    <li><Link className={location == '/about' ? "link active" : "link"} to={'/about'}>Sobre</Link></li>
+                </ul>
+            </div>
         </header>
     )
 }
