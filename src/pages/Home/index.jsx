@@ -8,6 +8,7 @@ import SearchBar from "../../components/SearchBar";
 import Card from "../../components/Card";
 import Tags from "../../components/Tags";
 import PageControls from "../../components/PageControls";
+import Carousel from "../../components/Carousel";
 
 export default function Home() {
     const [loading, setLoading] = useState(false)
@@ -22,6 +23,8 @@ export default function Home() {
 
     const isSearching = results.length > 0
     const activePageData = isSearching ? searchPageData : pageData
+
+    const [topProducts, setTopProducts] = useState([])
 
     useEffect(() => {
         async function getProducts() {
@@ -46,6 +49,20 @@ export default function Home() {
         }
     }, [productList, results])
 
+    useEffect(() => {
+        async function getTopProducts() {
+            await axios.get('http://127.0.0.1:8000/products/top_products')
+            .then(data => {
+                setTopProducts(data.data)
+            })
+            .catch(e => {
+                console.error('Houve um problema ao buscar os produtos.', e)
+            })
+        }
+
+        getTopProducts()
+    }, [])
+
     return (
         <div className="home-container">
             <div className="content-container">
@@ -55,8 +72,15 @@ export default function Home() {
 
                 <main className="content">
                     <SearchBar pageDependencies={{setResults, setSearchPageData, currentPage, setCurrentPage}}/>
+                    {!loading && 
+                    <section>
+                        <h2 className="title subtitle">Destaques</h2>
 
-                    {/* <Tags/> */}
+                        <div className="top-products">
+                            <Carousel products={topProducts}/>
+                        </div>
+                    </section>
+                    }
 
                     <div className="container-products">
                         <h2 className="title subtitle">Nossos produtos</h2>
