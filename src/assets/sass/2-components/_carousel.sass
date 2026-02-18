@@ -1,0 +1,89 @@
+@use '../1-base/_variables'
+@use '../1-base/_utilities'
+
+.carousel 
+    margin: 40px 0
+    width: calc(100% + 40px)
+    margin-left: -20px
+    overflow: hidden
+    height: 440px
+    position: relative
+
+    @include utilities.responsive( 620px )
+        .card 
+            min-width: 240px !important
+
+    @include utilities.responsive( 720px )
+        width: 100%
+        max-width: 770px
+        height: 500px
+        margin: 40px auto
+
+    ul 
+        display: flex   
+
+        li 
+            
+            transition: .3s
+            &.is-active
+                transform: translateY(-15px)
+
+
+        .card 
+            min-width: 180px
+            margin: 20px 0
+
+    .splide__arrows 
+        width: 100%
+        position: absolute
+        bottom: 0
+        display: flex
+        justify-content: space-between
+
+        .splide__arrow--prev, .splide__arrow--next
+            border: 1px solid variables.$primary-dark-color
+            background: none
+            width: 40px
+            border-radius: 8px
+            display: flex
+            justify-content: center
+            align-items: center
+            background: variables.$primary-gradient
+            cursor: pointer
+            
+            svg 
+                width: 28px
+                fill: #FFF
+
+
+        .splide__arrow--prev
+            transform: rotate(180deg)
+            margin-left: 20px
+
+
+        .splide__arrow--next
+            margin-right: 20px
+            
+    .splide__pagination 
+        display: flex
+        justify-content: center
+        gap: 10px
+        margin-top: 20px
+        position: absolute
+        bottom: 12px
+        left: 50%
+        transform: translate(-50%, -50%)
+
+        .splide__pagination__page 
+            width: 10px
+            height: 10px
+            border-radius: 50%
+            margin: 0 5px
+            cursor: pointer
+            border: 1px solid variables.$primary-dark-color
+            background: white
+            transition: .3s
+
+            &.is-active 
+                background-color: variables.$primary-dark-color
+                transform: scale(1.6)

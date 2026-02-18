@@ -1,9 +1,19 @@
 import { Link } from "react-router-dom"
 import { FiShoppingCart } from "react-icons/fi";
 import { tags } from "../../services/tags-data";
+import axios from "axios";
 
 export default function Card({product, handleDeleteProduct = null}){
     const location = window.location.pathname
+
+    async function HandleNewClick(id){
+        axios.patch(`https://compra-facil.onrender.com/products/${id}/view`)
+        .then(() => {
+            console.log('Tudo certo')
+        }).catch((e) => {
+            console.error('Erro ao atualizar visualizações do item.', e)
+        })
+    }
 
     return (
         <div className="card">
@@ -20,7 +30,7 @@ export default function Card({product, handleDeleteProduct = null}){
                 </div>
 
                 {location === '/admin/dashboard' ? <button className="btn delete" onClick={() => handleDeleteProduct(product._id)}>Excluir</button> 
-                : <Link className="btn buy" target="_blank" to={product.productLink}><FiShoppingCart className="icon big cart"/></Link>}
+                : <Link className="btn buy" target="_blank" onClick={() => HandleNewClick(product._id)} to={product.productLink}><FiShoppingCart className="icon big cart"/></Link>}
                 
             </div>
         </div>
