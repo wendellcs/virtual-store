@@ -39,7 +39,6 @@ export default function Home() {
                 console.error('Erro ao buscar produtos:', err)
             })
         }
-
         getProducts()
     }, [currentPage])
 
@@ -51,7 +50,7 @@ export default function Home() {
 
     useEffect(() => {
         async function getTopProducts() {
-            await axios.get('http://127.0.0.1:8000/products/top_products')
+            await axios.get('https://compra-facil.onrender.com/products/top_products')
             .then(data => {
                 setTopProducts(data.data)
             })
@@ -72,14 +71,14 @@ export default function Home() {
 
                 <main className="content">
                     <SearchBar pageDependencies={{setResults, setSearchPageData, currentPage, setCurrentPage}}/>
-                    {!loading && 
-                    <section>
-                        <h2 className="title subtitle">Destaques</h2>
+                    {(!loading && !results.length > 0) &&
+                        <section>
+                            <h2 className="title subtitle">Destaques</h2>
 
-                        <div className="top-products">
-                            <Carousel products={topProducts}/>
-                        </div>
-                    </section>
+                            <div className="top-products">
+                                <Carousel products={topProducts}/>
+                            </div>
+                        </section>
                     }
 
                     <div className="container-products">

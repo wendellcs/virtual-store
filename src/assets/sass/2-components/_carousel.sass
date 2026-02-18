@@ -9,6 +9,16 @@
     height: 440px
     position: relative
 
+    @include utilities.responsive( 620px )
+        .card 
+            min-width: 240px !important
+
+    @include utilities.responsive( 720px )
+        width: 100%
+        max-width: 770px
+        height: 500px
+        margin: 40px auto
+
     ul 
         display: flex   
 

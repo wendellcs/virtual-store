@@ -7,13 +7,12 @@ export default function Carousel({products}){
         autoplay: true,
         rewind: true,
         start: 5,
-        speed: 300,
+        speed: 600,
         permove: 1,
         focus: 'center',
         gap: '2rem',
         pagination: true,
         height: "300px",
-
         flickPower: 20, 
         flickMaxPages: 1,  
     }
