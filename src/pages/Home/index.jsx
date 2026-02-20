@@ -24,8 +24,6 @@ export default function Home() {
     const isSearching = results.length > 0
     const activePageData = isSearching ? searchPageData : pageData
 
-    const [topProducts, setTopProducts] = useState([])
-
     useEffect(() => {
         async function getProducts() {
             setLoading(true)
@@ -48,20 +46,6 @@ export default function Home() {
         }
     }, [productList, results])
 
-    useEffect(() => {
-        async function getTopProducts() {
-            await axios.get('https://compra-facil.onrender.com/products/top_products')
-            .then(data => {
-                setTopProducts(data.data)
-            })
-            .catch(e => {
-                console.error('Houve um problema ao buscar os produtos.', e)
-            })
-        }
-
-        getTopProducts()
-    }, [])
-
     return (
         <div className="home-container">
             <div className="content-container">
@@ -76,7 +60,7 @@ export default function Home() {
                             <h2 className="title subtitle">Destaques</h2>
 
                             <div className="top-products">
-                                <Carousel products={topProducts}/>
+                                <Carousel/>
                             </div>
                         </section>
                     }
