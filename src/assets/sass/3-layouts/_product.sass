@@ -9,12 +9,19 @@
             gap: 5px
             width: 80%
             max-width: 400px
-            margin: 20px 0
+            margin: 30px 0 30px 15px
+            position: relative
 
             &-text 
                 white-space: nowrap
                 overflow: hidden
                 text-overflow: ellipsis
+
+            .icon
+                position: absolute
+                color: variables.$text-color
+                left: -20px
+                top: -4px
 
         .image-container
             width: 100%
@@ -22,14 +29,19 @@
             border: 1px solid variables.$primary-dark-color
             padding: 5px
             border-radius: 12px
-            margin-bottom: 40px
+            margin: 40px auto 40px auto
+            
 
             img 
                 width: 100%
-                object-fit: cover
+                max-height: 400px
+                object-fit: contain
 
         .product-details
             text-align: left
+            width: 100%
+            max-width: 770px
+            margin: 0 auto
 
             .tag 
                 color: variables.$primary-color

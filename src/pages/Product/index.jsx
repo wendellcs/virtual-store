@@ -4,6 +4,7 @@ import Loading from '../../components/Loading'
 import { FiShoppingCart } from "react-icons/fi";
 import { CiHeart, CiShare2  } from "react-icons/ci";
 import { IoShieldCheckmark } from "react-icons/io5";
+import { MdKeyboardArrowLeft } from "react-icons/md";
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
@@ -32,6 +33,10 @@ export default function Product(){
         getProduct()
     }, [id])
 
+    useEffect(() => {
+        window.scroll(0, 0)
+    }, [product])
+
     return(
         <>
             <Header/>
@@ -41,7 +46,7 @@ export default function Product(){
                 {product &&
                     <div className="main-product-content">
                         <div className="go-back">
-                            <Link className='text' to={'/'}>Voltar</Link>
+                            <Link className='text' to={'/'}><MdKeyboardArrowLeft className='icon big'/>Voltar</Link>
                             <p className='text go-back-text'>/ {product.tag} / {product.name}</p>
                         </div>
 
