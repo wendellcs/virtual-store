@@ -40,21 +40,8 @@
                 max-width: 100%
                 margin: 20px auto
 
-
         .icon-frame
-            background: variables.$secondary-gradient
-            border-radius: 12px
-            display: flex
-            align-items: center
-            justify-content: center
-            transition: transform 0.3s ease
-
-            &:hover 
-                transform: scale(1.1)
-
-            .icon 
-                color: variables.$light-color
-                font-size: 3.6rem
+            @extend %icon-frame-style
 
         .reasons 
             margin: 40px 0

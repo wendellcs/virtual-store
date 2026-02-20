@@ -1,5 +1,20 @@
 @use './_variables'
 
+%icon-frame-style
+  background: variables.$secondary-gradient
+  border-radius: 12px
+  display: flex
+  align-items: center
+  justify-content: center
+  transition: transform 0.3s ease
+
+  &:hover 
+    transform: scale(1.1)
+
+  .icon 
+    color: variables.$light-color
+    font-size: 3.6rem
+
 @mixin responsive( $size) 
   @media (min-width: $size)
     @content

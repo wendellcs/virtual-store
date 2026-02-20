@@ -9,7 +9,7 @@ export default function Card({product, handleDeleteProduct = null}){
     async function HandleNewClick(id){
         axios.patch(`https://compra-facil.onrender.com/products/${id}/view`)
         .then(() => {
-            console.log('Tudo certo')
+            
         }).catch((e) => {
             console.error('Erro ao atualizar visualizações do item.', e)
         })
@@ -25,12 +25,12 @@ export default function Card({product, handleDeleteProduct = null}){
             <h3 className="product-name">{product.name}</h3>
             <div className="card-bottom">
                 <div className="card-bottom-left">
-                    <p className="product-price">R$ {product.price}</p>
-                    <p className="product-price-card">Até {product.parts}x de R${product.partsPrice}</p>
+                    <p className="product-price">{product.price.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}</p>
+                    <p className="product-price-card">Até {product.parts}x de {product.partsPrice.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}</p>
                 </div>
 
                 {location === '/admin/dashboard' ? <button className="btn delete" onClick={() => handleDeleteProduct(product._id)}>Excluir</button> 
-                : <Link className="btn buy" target="_blank" onClick={() => HandleNewClick(product._id)} to={product.productLink}><FiShoppingCart className="icon big cart"/></Link>}
+                : <Link className="btn buy" onClick={() => HandleNewClick(product._id)} to={`/products/${product._id}`}><FiShoppingCart className="icon big cart"/>Ver produto</Link>}
                 
             </div>
         </div>
