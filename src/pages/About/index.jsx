@@ -13,7 +13,7 @@ export default function About(){
             <Header/>
 
             <main id="about">
-                <h2 className="title subtitle">Quem somos?</h2>
+                <h1 className="title subtitle">Quem somos?</h1>
 
                 <div className="text-container">
                     <p className="text">

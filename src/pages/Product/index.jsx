@@ -56,7 +56,7 @@ export default function Product(){
 
                         <div className="product-details">
                             <p className='tag'>{tags[product.tag]}</p>
-                            <h2 className='product-name'>{product.name}</h2>
+                            <h1 className='product-name'>{product.name}</h1>
                         
                             <div className="product-details-price">
                                 <div className="info">
@@ -68,7 +68,7 @@ export default function Product(){
                                         <IoShieldCheckmark className='icon'/>
                                     </div>
                                     
-                                    <h3>Compra segura</h3>
+                                    <h2>Compra segura</h2>
                                     <p>Dados protegidos</p>
                                 </div>
                             </div>

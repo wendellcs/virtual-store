@@ -13,7 +13,7 @@ export default function Header({}) {
             <div className="logo">
                 <img src={logo} alt="Logo Compra Fácil By" />
             </div>
-            <Link to={'/'}><h1 className="title main">Compra Fácil By</h1></Link>
+            <Link to={'/'}><h2 className="title main">Compra Fácil By</h2></Link>
             
             <div className="dropdown-icon" onClick={() => setOpenDropdown(!openDropdown)}>
                 {!openDropdown ? <IoMdMenu className="icon menu"/> : <IoMdClose  className="icon close"/>}

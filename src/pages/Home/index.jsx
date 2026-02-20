@@ -65,7 +65,7 @@ export default function Home() {
                         </section>
                     }
 
-                    <div className="container-products">
+                    <section className="container-products">
                         <h2 className="title subtitle">Nossos produtos</h2>
 
                         <div className="products">
@@ -84,7 +84,7 @@ export default function Home() {
                             })}
                            
                         </div>
-                    </div>
+                    </section>
 
                 {(productList.length > 0 || results.length > 0) && <PageControls pageControls = {{pageData: activePageData, currentPage, setCurrentPage}}/>}
                 </main>
