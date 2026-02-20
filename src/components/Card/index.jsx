@@ -9,7 +9,7 @@ export default function Card({product, handleDeleteProduct = null}){
     async function HandleNewClick(id){
         axios.patch(`https://compra-facil.onrender.com/products/${id}/view`)
         .then(() => {
-            console.log('Tudo certo')
+            
         }).catch((e) => {
             console.error('Erro ao atualizar visualizações do item.', e)
         })

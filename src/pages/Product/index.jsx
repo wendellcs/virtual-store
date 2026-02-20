@@ -38,7 +38,7 @@ export default function Product(){
     }, [product])
 
     return(
-        <>
+        <div id='product-page'>
             <Header/>
             <main className='main-product'>
                 {loading && <Loading/>}
@@ -90,6 +90,6 @@ export default function Product(){
                 }
             </main>
             <Footer/>
-        </>
+        </div>
     )
 }
