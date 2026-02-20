@@ -30,7 +30,7 @@ export default function Card({product, handleDeleteProduct = null}){
                 </div>
 
                 {location === '/admin/dashboard' ? <button className="btn delete" onClick={() => handleDeleteProduct(product._id)}>Excluir</button> 
-                : <Link className="btn buy" onClick={() => HandleNewClick(product._id)} to={`/products/${product._id}`}><FiShoppingCart className="icon big cart"/>Ver produto</Link>}
+                : <Link className="btn buy" onClick={() => HandleNewClick(product._id)} to={`/products/${product.slug}/${product._id}`}><FiShoppingCart className="icon big cart"/>Ver produto</Link>}
                 
             </div>
         </div>

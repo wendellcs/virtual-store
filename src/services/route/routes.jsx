@@ -11,7 +11,7 @@ export default function RoutesApp(){
         <Routes>
             <Route path="/" element={<Home/>}/>
             <Route path="/about" element={<About/>}/>
-            <Route path="/products/:id" element={<Product/>}/>
+            <Route path="/products/:slug/:id" element={<Product/>}/>
 
             <Route path="/admin" element={<Admin/>}/>
             <Route path="/admin/dashboard" element={<Dashboard/>}/>
