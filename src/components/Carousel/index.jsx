@@ -21,6 +21,7 @@ export default function Carousel(){
     }, [])
     
     const splideOptions = {
+        loop: true,
         autoplay: true,
         rewind: true,
         start: 5,

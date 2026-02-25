@@ -2,25 +2,58 @@
 @use '../1-base/_utilities'
 
 footer 
-    text-align: center
+    padding: 30px 0
+    background: variables.$primary-gradient
+    display: grid
     position: relative
-    height: 90px
-    padding: 20px 0
-    background: #7C3BED
-    background: linear-gradient(40deg, rgba(124, 59, 237, 1) 0%, rgba(88, 17, 212, 1) 100%)
+    align-items: center
 
-    .go-back
-        top: 18px
-        right: 25px
-    nav
-        margin-top: 10px
-        li
-            margin: 0 15px
-            cursor: pointer
+    .logo 
+        @extend %logo-style
+        margin-left: 30px
+        top: 40px
+        height: 45px
+        width: 45px
 
-            a
-                color: variables.$light-color
-                font-size: 1.2rem
+    .text, .icon
+        color: variables.$light-color
+        font-size: 1.6rem
+
+    .footer-text 
+        display: flex
+        flex-direction: column
+        text-align: center
+        width: 100%
+        
+        .text 
+            margin-top: 20px
+
+        .icon 
+            vertical-align: middle
+
+        @include utilities.responsive( 640px )
+            padding: 20px 40px 20px 90px
+            flex-direction: row
+            justify-content: space-between
+            align-items: center
+
+            .text 
+                margin-top: 0
+            
+            .footer-links
                 
+                margin: 0
+
+    .footer-links
+        display: flex
+        justify-content: center
+        margin: 20px 0 0 0
+        gap: 15px
+
+        .social 
+            cursor: pointer
+            transition: transform 0.3s ease
+
             &:hover 
-                text-decoration: underline
+                transform: scale(1.2)
+            
