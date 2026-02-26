@@ -1,0 +1,32 @@
+@use '../1-base/_variables'
+@use '../1-base/_utilities'
+
+.page-notFound 
+    display: flex
+    min-height: 100dvh
+    flex-direction: column
+
+    main 
+        flex: 1
+        text-align: center
+
+        .title
+            font-size: 3.6rem
+            color: variables.$primary-dark-color
+            margin: 60px 0 20px
+
+        h2 
+            font-size: 1.8rem
+            color: variables.$primary-color
+            margin-bottom: 20px
+
+        a 
+            font-size: 1.6rem
+            color: variables.$link-color
+            text-decoration: underline
+            display: block
+
+        img 
+            width: 100%
+            max-width: 300px
+            margin: 40px auto

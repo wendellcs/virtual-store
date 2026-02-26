@@ -5,6 +5,7 @@ import Admin from "../../pages/Admin";
 import Dashboard from "../../pages/Dashboard";
 import About from "../../pages/About";
 import Product from "../../pages/Product";
+import NotFound from "../../pages/NotFound";
 
 export default function RoutesApp(){
     return (
@@ -13,10 +14,12 @@ export default function RoutesApp(){
             <Route path="/about" element={<About/>}/>
             <Route path="/products/:slug/:id" element={<Product/>}/>
 
+            {/* Protected Routes */}
             <Route path="/admin" element={<Admin/>}/>
             <Route path="/admin/dashboard" element={<Dashboard/>}/>
-            {/* Not found */}
             
+            {/* Not found */}
+            <Route path="*" element={<NotFound/>}/>
         </Routes>
     )
 }
