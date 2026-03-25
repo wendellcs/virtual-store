@@ -1,11 +1,8 @@
 import logo from '../../assets/images/logo-icon.png'
 import { FaHeart, FaInstagram, FaAmazon, FaYoutube   } from "react-icons/fa6";
 import { SiMercadopago } from "react-icons/si";
-import { Link } from 'react-router-dom'
 
 export default function Footer(){
-    const currentPath = window.location.pathname
-
     return (
         <footer>
             <div className="logo">

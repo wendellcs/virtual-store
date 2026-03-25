@@ -1,2 +1,51 @@
+@use '../1-base/variables'
+@use '../1-base/utilities'
+
 .load-container
     grid-column: 1 / -1
+    width: 100%
+    max-width: 400px
+    margin: 30px auto
+
+    .title 
+        color: variables.$text-color
+
+    .progress-bar
+        position: relative
+        width: 300px
+        margin: 30px auto
+
+        .progress
+            width: 300px
+            height: 25px
+            border: 1px solid variables.$primary-color
+            border-radius: 8px
+
+            &::-webkit-progress-bar
+                background-color: #ffffff
+                border-radius: 10px
+
+            &::-webkit-progress-value
+                background: variables.$primary-gradient
+                border-radius: 6px
+                transition: .5s
+
+        .counter 
+            font-size: 1.6rem
+            position: absolute
+            font-weight: bold
+            left: 50%
+            top: 50%
+            transform: translate(-50%, -50%)
+
+    .message 
+        p 
+            margin-bottom: 20px
+
+            &:first-of-type
+                line-height: 140%
+
+        .icon 
+            font-size: 1.6rem
+            vertical-align: middle
+            color: variables.$primary-color

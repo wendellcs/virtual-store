@@ -24,6 +24,7 @@ footer
         flex-direction: column
         text-align: center
         width: 100%
+        position: relative
         
         .text 
             margin-top: 20px
@@ -32,7 +33,7 @@ footer
             vertical-align: middle
 
         @include utilities.responsive( 640px )
-            padding: 20px 40px 20px 90px
+            padding: 20px 90px 20px 90px
             flex-direction: row
             justify-content: space-between
             align-items: center
@@ -41,8 +42,10 @@ footer
                 margin-top: 0
             
             .footer-links
-                
                 margin: 0
+                position: absolute
+                left: 50% 
+                transform: translate(-50%)
 
     .footer-links
         display: flex
