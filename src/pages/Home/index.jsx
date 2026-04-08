@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import Header from "../../components/Header"
-import Menu from "../../components/Menu"
 import Loading from "../../components/Loading";
 import axios from 'axios'
 import Footer from "../../components/Footer";
@@ -9,6 +8,10 @@ import Card from "../../components/Card";
 import Tags from "../../components/Tags";
 import PageControls from "../../components/PageControls";
 import Carousel from "../../components/Carousel";
+import { IoPricetagOutline } from "react-icons/io5"
+import { FiShoppingBag } from "react-icons/fi";
+import { CiStar } from "react-icons/ci";
+
 
 export default function Home() {
     const [loading, setLoading] = useState(false)
@@ -23,8 +26,22 @@ export default function Home() {
 
     const [progress, setProgress] = useState(0)
 
+    const [activeTag, setActiveTag] = useState('')
+
     const isSearching = results.length > 0
     const activePageData = isSearching ? searchPageData : pageData
+
+    
+    useEffect(() => {
+        function handleActiveTag(){
+            if (activeTag === 'mais vendidos'){
+                
+            }
+        }
+
+        handleActiveTag()
+
+    }, [activeTag])
 
     useEffect(() => {
         async function getProducts() {
@@ -53,14 +70,16 @@ export default function Home() {
     return (
         <div className="home-container">
             <div className="content-container">
-                {/* Remover o setMenu / Menu */}
                 <Header menu={menu} setmenu={setMenu}/>
-                <Menu menu={menu}/> 
 
                 <main className="content">
-                    <SearchBar pageDependencies={{setResults, setSearchPageData, currentPage, setCurrentPage}}/>
+                    <section id="banner">
+                        <h1 className="title main">Tudo que você precisa,<br/>em um só lugar.</h1>
+                        <h2 className="title subtitle">Praticidade e segurança para suas compras do dia a dia.</h2>
+                        <SearchBar pageDependencies={{setResults, setSearchPageData, currentPage, setCurrentPage}}/>
+                    </section>
                     {(!loading && !results.length > 0) &&
-                        <section>
+                        <section id="highlights">
                             <h2 className="title subtitle">Destaques</h2>
 
                             <div className="top-products">
