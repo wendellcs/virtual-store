@@ -21,14 +21,18 @@ export default function Home() {
     const [searchPageData, setSearchPageData] = useState({})
     const [results, setResults] = useState([])
 
+    const [progress, setProgress] = useState(0)
+
     const isSearching = results.length > 0
     const activePageData = isSearching ? searchPageData : pageData
 
     useEffect(() => {
         async function getProducts() {
             setLoading(true)
+            setProgress(70)
             await axios.get(`https://compra-facil.onrender.com/products?page=${currentPage}&limit=12`)
             .then((data) => {
+                setProgress(100)
                 setProductList(data.data.data)
                 setPageData(data.data)
                 setLoading(false)
@@ -70,7 +74,7 @@ export default function Home() {
 
                         <div className="products">
 
-                            {loading && <Loading/>}
+                            {loading && <Loading loadingType= '1' progress={progress}/>}
                             {results.length > 0 && results.map(p => {
                                 return (
                                     <Card product={p} key={p._id}/>

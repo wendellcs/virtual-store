@@ -41,7 +41,7 @@ export default function Product(){
         <div id='product-page'>
             <Header/>
             <main className='main-product'>
-                {loading && <Loading/>}
+                {loading && <Loading loadingType='0'/>}
 
                 {product &&
                     <div className="main-product-content">

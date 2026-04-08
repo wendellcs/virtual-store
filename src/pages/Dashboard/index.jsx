@@ -1,5 +1,5 @@
 import axios from "axios"
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { FaArrowUp } from "react-icons/fa";
 import SearchBar from "../../components/SearchBar"; 
