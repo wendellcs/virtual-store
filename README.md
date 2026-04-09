@@ -4,8 +4,8 @@ Aplicação web para facilitar a gestão e organização de compras, permitindo 
 
 ## Demonstração
 
+![text](https://res.cloudinary.com/duytjrpl5/image/upload/w_400/v1775713648/compra_facil.png)
 - Link do projeto: [comprafacilby.com.br](https://www.comprafacilby.com.br)
-![text](https://res.cloudinary.com/duytjrpl5/image/upload/v1775713648/compra_facil.png)
 
 ## Sobre o projeto
 
