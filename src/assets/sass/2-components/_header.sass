@@ -1,51 +1,90 @@
 @use '../1-base/_variables'
 @use '../1-base/_utilities'
 
-header 
-    padding: 0 80px
-    position: relative
-    text-align: center
+header
+    position: sticky
+    padding: 0 10px
+    top: 0
+    z-index: 1000
     background: variables.$primary-gradient
+    transition: .3s
+
+    @include utilities.responsive(850px)
+        padding: 0 80px
+
+    .upper-container
+        transition: all 0.3s ease
+        h2, .logo, .desktop-links, .dropdown-icon
+            transition: all 0.3s ease
+
+    &.scrolled
+        .upper-container
+            height: 50px
+            h2
+                padding: 10px 0
+
+            .logo
+                max-width: 40px
+
+    .upper-container
+        position: relative
+        text-align: center
+        height: 80px
+        display: flex
+        justify-content: space-between
+        align-items: center
         
-    .logo 
-        left: 15px
-        top: 20px
-        @extend %logo-style
-        @include utilities.responsive(1000px)
-            left: 8%
+        .logo
+            @extend %logo-style
 
-    h2 
-        color: variables.$light-color
-        padding: 30px 0 20px 0
-
-
-    .dropdown-icon 
-        position: absolute
-        right: 15px
-        top: 23px
-        background-color: rgba(255, 255, 255, 0.2)
-        border-radius: 8px
-        padding: 5px
-        cursor: pointer
-
-        @include utilities.responsive(1000px)
-            right: 8%
-
-        .icon
+        h2
             color: variables.$light-color
-            font-size: 3rem
+            position: absolute
+            white-space: nowrap
+            left: 50%
+            top: 50%
+            transform: translate(-50%, -50%)
 
-            &.close 
-                animation: quick-spin .3s ease-in-out 1
+        .desktop-links
+            display: none
 
-            &.menu 
-                animation: zoom-out .3s ease-in-out 1
+            @include utilities.responsive(850px)
+                display: block
 
-    .dropdown 
+            .link
+                font-size: 1.8rem
+                color: variables.$light-color
+
+                &:hover
+                    color: variables.$link-hover-color
+
+                &:first-of-type
+                    margin-right: 20px
+
+        .dropdown-icon
+            background-color: rgba(255, 255, 255, 0.2)
+            border-radius: 8px
+            padding: 5px
+            cursor: pointer
+
+            @include utilities.responsive(850px)
+                display: none
+
+            .icon
+                color: variables.$light-color
+                font-size: 3rem
+
+                &.close
+                    animation: quick-spin .3s ease-in-out 1
+
+                &.menu
+                    animation: zoom-out .3s ease-in-out 1
+
+    .dropdown
         text-align: center
         width: 100%
         transition: .4s
-        overflow: hidden    
+        overflow: hidden
         height: 140px
 
         @include utilities.responsive(560px)
@@ -62,17 +101,17 @@ header
                 display: flex
                 justify-content: center
                 gap: 20px
-                
-                li 
+
+                li
                     width: 250px
                     max-width: 50%
 
-            li 
+            li
                 margin: 15px 0
                 background: #ffffff2b
                 border-radius: 8px
 
-                .link 
+                .link
                     color: variables.$light-color
                     font-size: 1.6rem
                     position: relative
@@ -85,7 +124,7 @@ header
                     border: 2px solid transparent
                     overflow: hidden
 
-                    &:before 
+                    &:before
                         content: ''
                         position: absolute
                         right: -60px
@@ -98,10 +137,5 @@ header
                     &.active
                         border-color: variables.$light-color
 
-                        &:before 
+                        &:before
                             animation: shine 1s ease-in-out
-
-                        
-
-                    
-                
