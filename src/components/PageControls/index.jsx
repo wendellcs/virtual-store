@@ -1,6 +1,6 @@
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 
-export default function PageControls({pageControls}){
+export default function PageControls({pageControls, containerProductsRef}){
     function handleNextPage(){
         pageControls.setCurrentPage(pageControls.currentPage + 1)
         handleWindowScroll()
