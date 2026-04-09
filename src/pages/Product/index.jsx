@@ -19,33 +19,22 @@ export default function Product(){
 
     useEffect(() => {
         setLoading(true)
-        const controller = new AbortController()
-
         async function getProduct() {
-            try {
-                const data = await axios.get(`https://compra-facil.onrender.com/products/${id}`, {
-                    signal: controller.signal
-                })
+            axios.get(`https://compra-facil.onrender.com/products/${id}`)
+            .then(data => {
                 setProduct(data.data)
                 setLoading(false)
-
-            } catch (err) {
-                if (err.name !== 'CanceledError') {
-                    console.error(e)
-                }
-            } finally {
-                setLoading(false)
-            }
+            })
+            .catch(e => {
+                console.error(e)
+            })
         }
+
         getProduct()
-
-        return () => {
-            controller.abort()
-        }
     }, [id])
 
     useEffect(() => {
-        window.scrollTo({ top: 0, behavior: 'smooth'})
+        window.scroll(0, 0)
     }, [product])
 
     return(

@@ -6,12 +6,8 @@ import { BsLightningCharge, BsStars  } from "react-icons/bs";
 import { FaRegHeart } from "react-icons/fa";
 import { LuPiggyBank } from "react-icons/lu";
 import { AiFillLike } from "react-icons/ai";
-import { useEffect } from "react";
 
 export default function About(){
-    useEffect(() => {
-        window.scrollTo({ top: 0, behavior: 'smooth'})
-    }, [])
     return (
         <div className="about-container">
             <Header/>
