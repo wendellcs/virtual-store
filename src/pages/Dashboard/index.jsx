@@ -103,7 +103,7 @@ export default function Dashboard(){
     }
 
     async function handleDeleteProduct(id) {
-        await axios.delete(`https://compra-facil.onrender.com/products/${id}`, {withCredentials: true})
+        await axios.delete(`http://127.0.0.1:8000/products/${id}`, {withCredentials: true})
         .then(() => {
             getProducts()
         })
