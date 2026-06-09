@@ -9,7 +9,7 @@ Aplicação web para facilitar a gestão e organização de compras, permitindo 
 
 ## Sobre o projeto
 
-O Compra Fácil foi desenvolvido com o objetivo de substituir uma ferramenta existente que apresentava problemas de usabilidade e organização.
+O Compra Fácil foi desenvolvido com o objetivo de substituir uma ferramenta que apresentava problemas de usabilidade e organização.
 
 O projeto nasceu de uma necessidade real: facilitar o dia a dia de um usuário próximo (meu pai), proporcionando uma experiência mais simples, intuitiva e eficiente.
 
